@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:siakad_sma_al_fusha/features/student/beranda_student/presentation/views/beranda_student_view.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
@@ -21,13 +22,10 @@ class HomeStudentPage extends StatefulWidget {
 
 class _HomeStudentPageState extends State<HomeStudentPage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle();
+  static const TextStyle optionStyle = TextStyle();
+
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'home',
-      style: optionStyle,
-    ),
+    BerandaStudentView(),
     Text(
       'jadwal',
       style: optionStyle,
