@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siakad_sma_al_fusha/themes/colors.dart';
 
 class CustomTextWidget extends StatelessWidget {
   const CustomTextWidget({
@@ -6,7 +7,7 @@ class CustomTextWidget extends StatelessWidget {
     super.key,
     this.size = 12, 
     this.weight = FontWeight.w400, 
-    this.color = Colors.black,
+    this.color = kPrimaryTextColor,
     this.textAlign = TextAlign.start,
     this.isUsedMaxLines = true,
   });
