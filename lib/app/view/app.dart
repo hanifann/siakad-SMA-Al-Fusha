@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:siakad_sma_al_fusha/features/login/presentation/views/login_view.dart';
 import 'package:siakad_sma_al_fusha/l10n/l10n.dart';
+import 'package:siakad_sma_al_fusha/routes/routes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,7 +12,8 @@ class App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
+          routerConfig: router,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
@@ -28,7 +29,6 @@ class App extends StatelessWidget {
           ),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const LoginView(),
         );
       },
     );
