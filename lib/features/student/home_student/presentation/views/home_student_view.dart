@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/student/beranda_student/presentation/views/beranda_student_view.dart';
+import 'package:siakad_sma_al_fusha/features/student/schedule_student/presentation/views/schedule_student_view.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
@@ -26,10 +27,7 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     BerandaStudentView(),
-    Text(
-      'jadwal',
-      style: optionStyle,
-    ),
+    ScheduleStudentView(),
     Text(
       'Nilai',
       style: optionStyle,
