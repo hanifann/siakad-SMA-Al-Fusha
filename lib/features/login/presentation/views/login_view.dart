@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/widgets/column_title_and_textfield_widget.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/widgets/custom_textfield_widget.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 24.h,),
               passwordTextFieldWidget(),
               SizedBox(height: 48.h,),
-              masukBtnWidget()
+              masukBtnWidget(context)
             ],
           ),
         ),
@@ -70,18 +71,18 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  SizedBox masukBtnWidget() {
+  SizedBox masukBtnWidget(BuildContext context) {
     return SizedBox(
       width: 1.sw,
       child: ElevatedButton(
         onPressed: () {
-          
+          context.pushReplacement('/home_student');
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: kPrimaryColor,
           padding: EdgeInsets.only(
             top: 12.h,
-            bottom: 11.h
+            bottom: 11.h,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
