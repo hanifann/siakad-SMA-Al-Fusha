@@ -60,7 +60,7 @@ class BerandaStudentPage extends StatelessWidget {
                 SizedBox(height: 12.h,),
                 const RowVisiMisiWidget(
                   isList: true,
-                  title: 'Visi',
+                  title: 'Misi',
                   list: listMisi,
                 ),
               ],
