@@ -35,37 +35,41 @@ class BerandaStudentPage extends StatelessWidget {
         children: [
           containerLogoWidget(),
           SizedBox(height: 16.h,),
-          Container(
-            padding: EdgeInsets.all(16.r),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.r),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(.15),
-                  offset: const Offset(0, 2),
-                  blurRadius: 10,
-                )
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const RowVisiMisiWidget(
-                  isList: false,
-                  title: 'Visi',
-                  value: 'Mencetak peserta didik yang unggul dalam prestasi, ' 
-                  'berakhlakul karimah, taat beragama, dan berketerampilan',
-                ),
-                SizedBox(height: 12.h,),
-                const RowVisiMisiWidget(
-                  isList: true,
-                  title: 'Misi',
-                  list: listMisi,
-                ),
-              ],
-            ),
+          containerVisiMisiWidget()
+        ],
+      ),
+    );
+  }
+
+  Container containerVisiMisiWidget() {
+    return Container(
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.r),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.15),
+            offset: const Offset(0, 2),
+            blurRadius: 10,
           )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const RowVisiMisiWidget(
+            isList: false,
+            title: 'Visi',
+            value: 'Mencetak peserta didik yang unggul dalam prestasi, ' 
+            'berakhlakul karimah, taat beragama, dan berketerampilan',
+          ),
+          SizedBox(height: 12.h,),
+          const RowVisiMisiWidget(
+            isList: true,
+            title: 'Misi',
+            list: listMisi,
+          ),
         ],
       ),
     );
