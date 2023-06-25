@@ -15,7 +15,7 @@ class ErrorModel extends Equatable{
 
     factory ErrorModel.fromJson(Map<String, dynamic> json) => ErrorModel(
         statusCode: json["statusCode"],
-        message: json["message"],
+        message: json["message"] == null ? null : json['message'],
     );
     
     @override
