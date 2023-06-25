@@ -37,10 +37,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       return LoginModel.fromJson(jsonDecode(response.body));
     } else {
       throw ServerException(
-        error: ErrorModel(
-          statusCode: response.statusCode,
-          message: ErrorModel.fromJson(jsonDecode(response.body)).message
-        )
+        error: ErrorModel.fromJson(jsonDecode(response.body))
       );
     }
   }

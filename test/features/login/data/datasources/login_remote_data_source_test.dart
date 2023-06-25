@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/models/login_model.dart';
@@ -75,4 +76,26 @@ void main() {
     expect(response, equals(tLoginModel));
   });
   
+  test('should return error object when response code is not 200', () async {
+    //arrange
+    when(mockHttpClient.post(
+      Uri.https(Env.url, '/api/login'),
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: {
+        'username': tUsername,
+        'password': tPassword
+      }
+    )).thenAnswer((_) async => Response(fixture('login_error.json'), 400));
+
+    //act
+    final call = remoteDataSource.postLogin;
+    
+    //assert
+    expect(
+      ()=> call(username: tUsername, password: tPassword), 
+      throwsA(const TypeMatcher<ServerException>())
+    );
+  });
 }
