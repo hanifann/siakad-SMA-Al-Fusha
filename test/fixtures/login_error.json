@@ -1,0 +1,8 @@
+{
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+        "username": [
+            "The provided credentials are incorrect."
+        ]
+    }
+}
