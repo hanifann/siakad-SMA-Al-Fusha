@@ -5,6 +5,7 @@ import 'package:siakad_sma_al_fusha/core/platform/network_info.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_local_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/login/domain/entities/login.dart';
+import 'package:siakad_sma_al_fusha/features/login/domain/entities/user.dart';
 import 'package:siakad_sma_al_fusha/features/login/domain/repositories/login_repositoy.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
@@ -42,6 +43,30 @@ class LoginRepositoryImpl implements LoginRepository {
       return const Left(
         CacheFailure()
       );
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>>? getUser() async {
+    if(await networkInfo.isConnected){
+      try {
+        final response = await remoteDataSource.getUser();
+        localDataSource.cachedUserData(response);
+        return Right(response);
+      } on ServerException catch (e) {
+        return Left(
+          ServerFailure( 
+            message: e.error.message
+          )
+        );
+      }
+    } else {
+      try {
+        final result = await localDataSource.getCachedUserData();
+        return Right(result!);
+      } on CacheException catch (e) {
+        return Left(CacheFailure(message: e.message));
+      }
     }
   }
   
