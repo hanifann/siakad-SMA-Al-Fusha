@@ -5,12 +5,15 @@ import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/core/error/model/error.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/models/login_model.dart';
+import 'package:siakad_sma_al_fusha/features/login/data/models/user_model.dart';
 
 abstract class LoginRemoteDataSource {
   Future<LoginModel> postLogin({
     required String username, 
     required String password
-  }); 
+  });
+
+  Future<UserModel> getUser();
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
@@ -42,4 +45,20 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     }
   }
   
+  @override
+  Future<UserModel> getUser() async {
+    final response = await client.get(
+      Uri.https(Env.url, '/api/me'),
+      headers: {
+        'Accept': 'application/json'
+      },
+    );
+    if(response.statusCode == 200){
+      return UserModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw ServerException(
+        error: ErrorModel.fromJson(jsonDecode(response.body))
+      );
+    }
+  }
 }

@@ -3,16 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:siakad_sma_al_fusha/core/platform/network_info.dart' as _i6;
+import 'package:siakad_sma_al_fusha/core/platform/network_info.dart' as _i7;
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_local_data_source.dart'
-    as _i5;
+    as _i6;
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_remote_datasource.dart'
-    as _i3;
+    as _i4;
 import 'package:siakad_sma_al_fusha/features/login/data/models/login_model.dart'
     as _i2;
+import 'package:siakad_sma_al_fusha/features/login/data/models/user_model.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -35,13 +37,23 @@ class _FakeLoginModel_0 extends _i1.SmartFake implements _i2.LoginModel {
         );
 }
 
+class _FakeUserModel_1 extends _i1.SmartFake implements _i3.UserModel {
+  _FakeUserModel_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [LoginRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginRemoteDataSource extends _i1.Mock
-    implements _i3.LoginRemoteDataSource {
+    implements _i4.LoginRemoteDataSource {
   @override
-  _i4.Future<_i2.LoginModel> postLogin({
+  _i5.Future<_i2.LoginModel> postLogin({
     required String? username,
     required String? password,
   }) =>
@@ -54,7 +66,7 @@ class MockLoginRemoteDataSource extends _i1.Mock
             #password: password,
           },
         ),
-        returnValue: _i4.Future<_i2.LoginModel>.value(_FakeLoginModel_0(
+        returnValue: _i5.Future<_i2.LoginModel>.value(_FakeLoginModel_0(
           this,
           Invocation.method(
             #postLogin,
@@ -66,7 +78,7 @@ class MockLoginRemoteDataSource extends _i1.Mock
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<_i2.LoginModel>.value(_FakeLoginModel_0(
+            _i5.Future<_i2.LoginModel>.value(_FakeLoginModel_0(
           this,
           Invocation.method(
             #postLogin,
@@ -77,33 +89,55 @@ class MockLoginRemoteDataSource extends _i1.Mock
             },
           ),
         )),
-      ) as _i4.Future<_i2.LoginModel>);
+      ) as _i5.Future<_i2.LoginModel>);
+  @override
+  _i5.Future<_i3.UserModel> getUser() => (super.noSuchMethod(
+        Invocation.method(
+          #getUser,
+          [],
+        ),
+        returnValue: _i5.Future<_i3.UserModel>.value(_FakeUserModel_1(
+          this,
+          Invocation.method(
+            #getUser,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i3.UserModel>.value(_FakeUserModel_1(
+          this,
+          Invocation.method(
+            #getUser,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i3.UserModel>);
 }
 
 /// A class which mocks [LoginLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginLocalDataSource extends _i1.Mock
-    implements _i5.LoginLocalDataSource {
+    implements _i6.LoginLocalDataSource {
   @override
-  _i4.Future<void>? cachedLoginData(_i2.LoginModel? login) =>
+  _i5.Future<void>? cachedLoginData(_i2.LoginModel? login) =>
       (super.noSuchMethod(
         Invocation.method(
           #cachedLoginData,
           [login],
         ),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>?);
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>?);
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
   @override
-  _i4.Future<bool> get isConnected => (super.noSuchMethod(
+  _i5.Future<bool> get isConnected => (super.noSuchMethod(
         Invocation.getter(#isConnected),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
