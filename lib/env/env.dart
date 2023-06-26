@@ -8,4 +8,6 @@ abstract class Env {
   static String url = _Env.url;
   @EnviedField(obfuscate: true, varName: 'TOKEN_KEY')
   static String token = _Env.token;
+  @EnviedField(obfuscate: true, varName: 'USER_KEY')
+  static String user = _Env.user;
 }
