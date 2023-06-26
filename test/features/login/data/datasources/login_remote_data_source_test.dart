@@ -12,16 +12,22 @@ import 'package:siakad_sma_al_fusha/features/login/data/models/login_model.dart'
 import 'package:siakad_sma_al_fusha/features/login/data/models/user_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
+import 'login_local_datasource_test.mocks.dart';
 import 'login_remote_data_source_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<Client>()])
 void main() {
   late MockClient mockHttpClient;
   late LoginRemoteDataSourceImpl remoteDataSource;
+  late MockSharedPreferences preferences;
 
   setUp(() {
     mockHttpClient = MockClient();
-    remoteDataSource = LoginRemoteDataSourceImpl(client: mockHttpClient);
+    preferences = MockSharedPreferences();
+    remoteDataSource = LoginRemoteDataSourceImpl(
+      client: mockHttpClient, 
+      preferences: preferences
+    );
   });
 
   group('login', () {
@@ -125,7 +131,8 @@ void main() {
       when(mockHttpClient.get(
         Uri.https(Env.url, '/api/me'),
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': 'Bearer null'
         },
       )).thenAnswer((_) async => Response(fixture('user.json'), 200));
     }
@@ -142,7 +149,8 @@ void main() {
         mockHttpClient.get(
           Uri.https(Env.url, '/api/me'),
           headers: {
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Authorization': 'Bearer null'
           },
         )
       );
@@ -164,7 +172,8 @@ void main() {
       when(mockHttpClient.get(
         Uri.https(Env.url, '/api/me'),
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': 'Bearer null'
         },
       )).thenThrow(ServerException(error: const ErrorModel()));
 

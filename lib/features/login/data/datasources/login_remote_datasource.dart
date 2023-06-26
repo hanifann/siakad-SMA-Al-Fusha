@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/core/error/model/error.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
@@ -18,8 +19,9 @@ abstract class LoginRemoteDataSource {
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   final Client client;
+  final SharedPreferences preferences;
 
-  LoginRemoteDataSourceImpl({required this.client});
+  LoginRemoteDataSourceImpl({required this.client, required this.preferences});
 
   @override
   Future<LoginModel> postLogin({
@@ -29,7 +31,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     final response = await client.post(
       Uri.https(Env.url, '/api/login'),
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
       },
       body: {
         'username': username,
@@ -50,7 +52,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     final response = await client.get(
       Uri.https(Env.url, '/api/me'),
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${preferences.getString(Env.token)}'
       },
     );
     if(response.statusCode == 200){
