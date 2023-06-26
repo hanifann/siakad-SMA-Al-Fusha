@@ -12,6 +12,11 @@ import 'package:siakad_sma_al_fusha/features/login/domain/usecase/get_user_useca
 import 'package:siakad_sma_al_fusha/features/login/domain/usecase/post_login_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/bloc/login_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/bloc/user_bloc.dart';
+import 'package:siakad_sma_al_fusha/features/student/home_student/data/datasources/role_local_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/student/home_student/data/repositories/role_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/student/home_student/domain/repositories/role_repository.dart';
+import 'package:siakad_sma_al_fusha/features/student/home_student/domain/usecases/get_role_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/student/home_student/presentation/cubit/role_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -42,6 +47,20 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<LoginLocalDataSource>(
     () => LoginLocalDataSourceImpl(preferences: sl())
+  );
+
+  //role
+  //cubit
+  sl.registerFactory(() => RoleCubit(sl()));
+  //usecase
+  sl.registerLazySingleton(() => GetRoleUseCase(sl()));
+  //repository
+  sl.registerLazySingleton<RoleRepository>(
+    () => RoleRepositoryImpl(sl())
+  );
+  //datasource
+  sl.registerLazySingleton<RoleLocalDataSource>(
+    () => RoleLocalDataSourceImpl(sl())
   );
   
 
