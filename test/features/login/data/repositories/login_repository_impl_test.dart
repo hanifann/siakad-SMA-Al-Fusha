@@ -8,7 +8,6 @@ import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_remote
 import 'package:siakad_sma_al_fusha/features/login/data/models/login_model.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/models/user_model.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/repositories/login_repository_impl.dart';
-import 'package:siakad_sma_al_fusha/features/login/domain/entities/user.dart';
 
 import 'login_repository_impl_test.mocks.dart';
 
