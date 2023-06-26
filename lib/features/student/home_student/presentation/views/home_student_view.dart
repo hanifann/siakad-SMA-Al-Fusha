@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/student/beranda_student/presentation/views/beranda_student_view.dart';
+import 'package:siakad_sma_al_fusha/features/student/home_student/presentation/cubit/role_cubit.dart';
 import 'package:siakad_sma_al_fusha/features/student/schedule_student/presentation/views/schedule_student_view.dart';
+import 'package:siakad_sma_al_fusha/injection_container.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
@@ -10,7 +13,10 @@ class HomeStudentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeStudentPage();
+    return BlocProvider(
+      create: (context) => sl<RoleCubit>()..getRoleEvent(),
+      child: const HomeStudentPage(),
+    );
   }
 }
 
@@ -113,30 +119,30 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
       ),
       actions: [
         Container(
-          padding: EdgeInsets.fromLTRB(10.w, 4.h, 4.w, 4.h),
+          padding: EdgeInsets.all(8.r),
           margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(666.r),
             color: kPrimaryColor,
           ),
-          child: Row(
-            children: [
-              CustomTextWidget(
-                text: 'Pelajar',
-                color: Colors.white,
-                weight: FontWeight.bold,
-                size: 14.sp,
-              ),
-              SizedBox(width: 4.w,),
-              Container(
-                width: 36.r,
-                height: 36.r,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey[200],
-                ),
-              )
-            ],
+          child: BlocBuilder<RoleCubit, RoleState>(
+            builder: (context, state) {
+              if(state is RoleLoaded){
+                return CustomTextWidget(
+                  text: state.role,
+                  color: Colors.white,
+                  weight: FontWeight.bold,
+                  size: 14.sp,
+                );
+              } else {
+                return CustomTextWidget(
+                  text: '...',
+                  color: Colors.white,
+                  weight: FontWeight.bold,
+                  size: 14.sp,
+                );
+              }
+            },
           ),
         )
       ],
