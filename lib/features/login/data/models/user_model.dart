@@ -68,14 +68,9 @@ class UserDatumModel extends UserDatum {
         "role": role,
         "id_users": idUsers,
         "tempat": tempat,
-        "tgl_lahir": "${
-          tglLahir?.year.toString().padLeft(4, '0')}-"
-          "${tglLahir?.month.toString().padLeft(2, '0')}-"
-          "${tglLahir?.day.toString().padLeft(2, '0')}",
+        "tgl_lahir": tglLahir == null ? null : tglLahir!.toIso8601String(),
         "pendidikan": pendidikan,
-        "tmk": "${tmk?.year.toString().padLeft(4, '0')}-"
-          "${tmk?.month.toString().padLeft(2, '0')}-"
-          "${tmk?.day.toString().padLeft(2, '0')}",
+        "tmk": tmk == null ? null : tmk!.toIso8601String(),
         "jabatan": jabatan,
         "alamat": alamat,
         "tgs_tam": tgsTam,
