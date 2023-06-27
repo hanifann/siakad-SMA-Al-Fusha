@@ -16,7 +16,7 @@ class App extends StatelessWidget {
           routerConfig: router,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            scaffoldBackgroundColor: Colors.white,
+            scaffoldBackgroundColor: const Color.fromRGBO(230, 238, 244, 1),
             fontFamily: 'Nunito',
             appBarTheme: const AppBarTheme(
               systemOverlayStyle: SystemUiOverlayStyle(
