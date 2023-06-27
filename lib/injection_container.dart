@@ -71,7 +71,7 @@ Future<void> init() async {
 
   //nilai
   //bloc
-  sl.registerFactory(() => NilaiBloc(sl()));
+  sl.registerFactory(() => NilaiBloc(sl(), sl()));
   //usecase
   sl.registerLazySingleton(() => GetNilasiUseCase(repository: sl()));
   //repository
