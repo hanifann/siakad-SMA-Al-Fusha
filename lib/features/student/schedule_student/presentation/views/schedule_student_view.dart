@@ -78,6 +78,52 @@ class _ScheduleStudentPageState extends State<ScheduleStudentPage> {
             size: 14.sp,
             color: kSecondaryTextColor,
             weight: FontWeight.w500,
+          ),
+          SizedBox(height: 24.h,),
+          ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Container(
+                  padding: EdgeInsets.only(left: 4.w),
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(8.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: kPrimaryColor.withOpacity(.15),
+                        blurRadius: 15
+                      )
+                    ]
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 9.h),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(8.r),
+                        bottomRight: Radius.circular(8.r)
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTextWidget(
+                          text: 'Matematika',
+                          size: 14.sp,
+                          weight: FontWeight.bold,
+                        ),
+                        // SizedBox(height: 10.h,),
+                        CustomTextWidget(
+                          text: '07.30 - 09.30',
+                          size: 12.sp,
+                        ),
+                      ],
+                    )
+                  ),
+                );
+            }, 
+            separatorBuilder: (_,__) => SizedBox(height: 16.h,), 
+            itemCount: 2
           )
         ],
       ),
