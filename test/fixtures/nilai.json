@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "nama": "nama",
+            "rph": "rph",
+            "pts": "pts",
+            "pat": "pat",
+            "jumlah": "jumlah",
+            "rata_rata": "rata"
+        }
+    ]
+}
