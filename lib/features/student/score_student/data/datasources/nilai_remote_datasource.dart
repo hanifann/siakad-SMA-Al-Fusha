@@ -23,7 +23,7 @@ class NilaiRemoteDataSourceImpl implements NilaiRemoteDataSource {
   @override
   Future<NilaiModel>? getNilai(String id) async {
     final response = await client.get(
-      Uri.https(Env.url, '/api/nilai/$id'),
+      Uri.https(Env.url, '/api/nilai_by_siswa/$id'),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${preferences.getString(Env.token)}',
