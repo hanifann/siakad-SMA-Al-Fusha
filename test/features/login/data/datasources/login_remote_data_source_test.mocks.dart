@@ -118,6 +118,7 @@ class MockClient extends _i1.Mock implements _i2.Client {
           {
             #headers: headers,
             #body: body,
+            #encoding: encoding,
           },
         ),
         returnValue: _i3.Future<_i2.Response>.value(_FakeResponse_0(
@@ -128,6 +129,7 @@ class MockClient extends _i1.Mock implements _i2.Client {
             {
               #headers: headers,
               #body: body,
+              #encoding: encoding,
             },
           ),
         )),
@@ -140,6 +142,7 @@ class MockClient extends _i1.Mock implements _i2.Client {
             {
               #headers: headers,
               #body: body,
+              #encoding: encoding,
             },
           ),
         )),
