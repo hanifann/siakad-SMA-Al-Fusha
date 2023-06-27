@@ -128,6 +128,14 @@ class MockLoginLocalDataSource extends _i1.Mock
         ),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>?);
+  @override
+  _i5.Future<void>? cachedUserData(_i3.UserModel? user) => (super.noSuchMethod(
+        Invocation.method(
+          #cachedUserData,
+          [user],
+        ),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>?);
 }
 
 /// A class which mocks [NetworkInfo].
