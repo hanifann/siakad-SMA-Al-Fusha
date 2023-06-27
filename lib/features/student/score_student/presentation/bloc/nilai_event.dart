@@ -12,3 +12,7 @@ class GetNilaiEvent extends NilaiEvent {
 
   const GetNilaiEvent(this.id);
 }
+
+class GetUserIdEvent extends NilaiEvent {
+  
+}
