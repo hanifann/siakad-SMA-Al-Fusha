@@ -15,8 +15,8 @@ class RoleRepositoryImpl implements RoleRepository {
     try {
       final jsonString = await localDataSource.getCachedRole();
       return Right(jsonString!);
-    } on CacheException catch (e) {
-      return Left(ServerFailure(message: e.message));
+    } on CacheException catch (_) {
+      return const Left(CacheFailure());
     }
   }
 }
