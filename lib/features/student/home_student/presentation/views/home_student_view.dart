@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:siakad_sma_al_fusha/features/student/announcement_student/views/announcement_view.dart';
 import 'package:siakad_sma_al_fusha/features/student/beranda_student/presentation/views/beranda_student_view.dart';
 import 'package:siakad_sma_al_fusha/features/student/home_student/presentation/cubit/role_cubit.dart';
 import 'package:siakad_sma_al_fusha/features/student/schedule_student/presentation/views/schedule_student_view.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/presentation/views/nilai_views.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
@@ -34,14 +36,8 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     BerandaStudentView(),
     ScheduleStudentView(),
-    Text(
-      'Nilai',
-      style: optionStyle,
-    ),
-    Text(
-      'pengumuman',
-      style: optionStyle,
-    ),
+    NilaiView(),
+    AnnouncementView()
   ];
 
   static const List<BottomNavigationBarItem> _bottomNavItem = [
@@ -121,6 +117,7 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
         Container(
           padding: EdgeInsets.all(8.r),
           margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(666.r),
             color: kPrimaryColor,
