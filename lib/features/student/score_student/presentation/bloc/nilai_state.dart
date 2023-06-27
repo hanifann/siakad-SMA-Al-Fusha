@@ -17,6 +17,12 @@ class NilaiLoaded extends NilaiState {
   const NilaiLoaded(this.nilai);
 }
 
+class UserDataLoaded extends NilaiState {
+  final User user;
+
+  const UserDataLoaded(this.user);
+}
+
 class NilaiFailed extends NilaiState {
   final ErrorModel error;
 
