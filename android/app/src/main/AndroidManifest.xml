@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ebt.siakd.alfusha.siakad_sma_al_fusha">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
    <application
         android:label="siakad_sma_al_fusha"
         android:name="${applicationName}"
