@@ -17,6 +17,12 @@ import 'package:siakad_sma_al_fusha/features/student/home_student/data/repositor
 import 'package:siakad_sma_al_fusha/features/student/home_student/domain/repositories/role_repository.dart';
 import 'package:siakad_sma_al_fusha/features/student/home_student/domain/usecases/get_role_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/student/home_student/presentation/cubit/role_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/data/datasources/nilai_local_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/data/datasources/nilai_remote_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/data/repositories/nilai_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/domain/repositories/nilai_repository.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/domain/usecases/get_nilai_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/presentation/bloc/nilai_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -61,6 +67,27 @@ Future<void> init() async {
   //datasource
   sl.registerLazySingleton<RoleLocalDataSource>(
     () => RoleLocalDataSourceImpl(sl())
+  );
+
+  //nilai
+  //bloc
+  sl.registerFactory(() => NilaiBloc(sl()));
+  //usecase
+  sl.registerLazySingleton(() => GetNilasiUseCase(repository: sl()));
+  //repository
+  sl.registerLazySingleton<NilaiRepository>(
+    () => NilaiRepositoryImpl(
+      remoteDataSource: sl(), 
+      localDataSource: sl(), 
+      networkInfo: sl(),
+    )
+  );
+  //datasources
+  sl.registerLazySingleton<NilaiRemoteDataSource>(
+    () => NilaiRemoteDataSourceImpl(client: sl(), preferences: sl())
+  );
+  sl.registerLazySingleton<NilaiLocalDataSource>(
+    () => NilaiLocalDataSourceImpl(preferences: sl())
   );
   
 
