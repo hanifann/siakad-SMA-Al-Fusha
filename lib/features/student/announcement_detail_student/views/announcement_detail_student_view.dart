@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:siakad_sma_al_fusha/features/student/announcement_student/domain/entities/announcement.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class AnnouncementDetailStudentView extends StatelessWidget {
-  const AnnouncementDetailStudentView({super.key});
+  const AnnouncementDetailStudentView({super.key, required this.announcement});
+
+  final AnnouncementDatum announcement;
 
   @override
   Widget build(BuildContext context) {
-    return const AnnouncementDetailStudentPage();
+    return AnnouncementDetailStudentPage(announcement: announcement,);
   }
 }
 
 class AnnouncementDetailStudentPage extends StatelessWidget {
-  const AnnouncementDetailStudentPage({super.key});
+  const AnnouncementDetailStudentPage({super.key, required this.announcement});
+
+  final AnnouncementDatum announcement;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +36,13 @@ class AnnouncementDetailStudentPage extends StatelessWidget {
         padding: EdgeInsets.all(16.r),
         children: [
           CustomTextWidget(
-            text: 'Pelaksanaan UAS',
+            text: announcement.judul,
             weight: FontWeight.w600,
             size: 16.sp,
           ),
           SizedBox(height: 4.h,),
-          const CustomTextWidget(
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          CustomTextWidget(
+            text: announcement.isiPengumuman,
             isUsedMaxLines: false,
             textAlign: TextAlign.justify,
           ),
