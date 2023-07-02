@@ -1,0 +1,10 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "tanggal": "2023-07-01T00:00:00.000",
+            "judul": "judul",
+            "isi_pengumuman": "isi"
+        }
+    ]
+}
