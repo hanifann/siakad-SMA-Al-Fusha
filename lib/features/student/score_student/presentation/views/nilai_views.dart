@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/student/score_student/presentation/bloc/nilai_bloc.dart';
+import 'package:siakad_sma_al_fusha/features/student/score_student/presentation/widgets/container_nilai_widget.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
-import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class NilaiView extends StatelessWidget {
@@ -42,54 +42,14 @@ class _NilaiPageState extends State<NilaiPage> {
             return ListView.separated(
               padding: EdgeInsets.all(16.r),
               itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.only(left: 4.w),
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(8.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: kPrimaryColor.withOpacity(.15),
-                        blurRadius: 15
-                      )
-                    ]
-                  ),
-                  child: Container(
-                    height: 60.h,
-                    padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 9.h),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(8.r),
-                        bottomRight: Radius.circular(8.r)
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        CustomTextWidget(
-                          text: state.nilai.data[index].nama,
-                          weight: FontWeight.w600,
-                          size: 14.sp,
-                        ),
-                        const Spacer(),
-                        CustomTextWidget(
-                          text: state.nilai.data[index].rataRata,
-                          weight: FontWeight.w600,
-                          size: 14.sp,
-                          color: const Color.fromRGBO(77, 138, 240, 1),
-                        ),
-                        SizedBox(width: 8.w,),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isExpand = !isExpand;
-                            });
-                          },
-                          child: const Icon(Icons.expand_more)
-                        )
-                      ],
-                    ),
-                  ),
+                return ContainerNilaiWidget(
+                  isExpand: isExpand, 
+                  nilai: state.nilai.data[index], 
+                  onIconTap: () {
+                    setState(() {
+                      isExpand = !isExpand;
+                    });
+                  },
                 );
               }, 
               separatorBuilder: (_, __) => SizedBox(height: 16.h), 
