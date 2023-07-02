@@ -12,4 +12,6 @@ abstract class Env {
   static String user = _Env.user;
   @EnviedField(obfuscate: true, varName: 'NILAI_KEY')
   static String nilai = _Env.nilai;
+  @EnviedField(obfuscate: true, varName: 'ANNOUNCEMENT_KEY')
+  static String announcement = _Env.announcement;
 }
