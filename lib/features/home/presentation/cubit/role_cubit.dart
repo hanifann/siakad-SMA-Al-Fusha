@@ -2,7 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:siakad_sma_al_fusha/core/usecase/usecase.dart';
-import 'package:siakad_sma_al_fusha/features/home_student/domain/usecases/get_role_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/home/domain/usecases/get_role_usecase.dart';
 
 part 'role_state.dart';
 

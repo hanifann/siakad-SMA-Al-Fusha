@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/domain/entities/announcement.dart';
 import 'package:siakad_sma_al_fusha/features/announcement_detail/views/announcement_detail_view.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/views/auth_view.dart';
-import 'package:siakad_sma_al_fusha/features/home_student/presentation/views/home_student_view.dart';
+import 'package:siakad_sma_al_fusha/features/home/presentation/views/home_student_view.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/views/login_view.dart';
 
 // GoRouter configuration

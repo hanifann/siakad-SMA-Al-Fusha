@@ -7,8 +7,8 @@ import 'package:mockito/mockito.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/core/error/failures.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/models/user_model.dart';
-import 'package:siakad_sma_al_fusha/features/home_student/data/datasources/role_local_datasource.dart';
-import 'package:siakad_sma_al_fusha/features/home_student/data/repositories/role_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/home/data/datasources/role_local_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/home/data/repositories/role_repository_impl.dart';
 
 import '../../../../../fixtures/fixture_reader.dart';
 import 'role_repository_impl_test.mocks.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/views/announcement_view.dart';
 import 'package:siakad_sma_al_fusha/features/beranda/presentation/views/beranda_view.dart';
-import 'package:siakad_sma_al_fusha/features/home_student/presentation/cubit/role_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/home/presentation/cubit/role_cubit.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/views/schedule_view.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/presentation/views/nilai_views.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';

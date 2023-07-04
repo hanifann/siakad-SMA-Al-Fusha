@@ -4,7 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:siakad_sma_al_fusha/features/home_student/domain/repositories/role_repository.dart'
+import 'package:siakad_sma_al_fusha/features/home/domain/repositories/role_repository.dart'
     as _i2;
 
 // ignore_for_file: type=lint
