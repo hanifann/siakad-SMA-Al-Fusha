@@ -7,10 +7,10 @@ import 'package:mockito/mockito.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/core/error/failures.dart';
 import 'package:siakad_sma_al_fusha/core/error/model/error.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/datasources/announcement_local_datasource.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/datasources/announcement_remote_datasource.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/models/announcement_model.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/repositories/announcement_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/datasources/announcement_local_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/datasources/announcement_remote_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/models/announcement_model.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/repositories/announcement_repository_impl.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import '../../../login/data/repositories/login_repository_impl_test.mocks.dart';

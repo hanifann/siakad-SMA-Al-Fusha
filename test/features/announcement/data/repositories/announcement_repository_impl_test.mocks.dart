@@ -6,11 +6,11 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/datasources/announcement_local_datasource.dart'
+import 'package:siakad_sma_al_fusha/features/announcement/data/datasources/announcement_local_datasource.dart'
     as _i3;
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/datasources/announcement_remote_datasource.dart'
+import 'package:siakad_sma_al_fusha/features/announcement/data/datasources/announcement_remote_datasource.dart'
     as _i2;
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/models/announcement_model.dart'
+import 'package:siakad_sma_al_fusha/features/announcement/data/models/announcement_model.dart'
     as _i5;
 
 // ignore_for_file: type=lint

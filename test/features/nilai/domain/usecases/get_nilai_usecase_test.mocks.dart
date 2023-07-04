@@ -8,9 +8,9 @@ import 'dart:async' as _i3;
 import 'package:dartz/dartz.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:siakad_sma_al_fusha/core/error/failures.dart' as _i5;
-import 'package:siakad_sma_al_fusha/features/student/score_student/domain/entities/nilai.dart'
+import 'package:siakad_sma_al_fusha/features/score_student/domain/entities/nilai.dart'
     as _i6;
-import 'package:siakad_sma_al_fusha/features/student/score_student/domain/repositories/nilai_repository.dart'
+import 'package:siakad_sma_al_fusha/features/score_student/domain/repositories/nilai_repository.dart'
     as _i2;
 
 // ignore_for_file: type=lint

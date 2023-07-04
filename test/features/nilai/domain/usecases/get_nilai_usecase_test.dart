@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/domain/entities/nilai.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/domain/repositories/nilai_repository.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/domain/usecases/get_nilai_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/domain/entities/nilai.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/domain/repositories/nilai_repository.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/domain/usecases/get_nilai_usecase.dart';
 
 import 'get_nilai_usecase_test.mocks.dart';
 

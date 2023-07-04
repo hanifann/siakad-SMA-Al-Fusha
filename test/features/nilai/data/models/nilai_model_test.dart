@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/models/nilai_model.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/data/models/nilai_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 

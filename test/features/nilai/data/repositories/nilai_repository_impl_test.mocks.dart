@@ -6,11 +6,11 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/datasources/nilai_local_datasource.dart'
+import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_local_datasource.dart'
     as _i5;
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/datasources/nilai_remote_datasource.dart'
+import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_remote_datasource.dart'
     as _i2;
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/models/nilai_model.dart'
+import 'package:siakad_sma_al_fusha/features/score_student/data/models/nilai_model.dart'
     as _i4;
 
 // ignore_for_file: type=lint

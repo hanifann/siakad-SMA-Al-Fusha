@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:siakad_sma_al_fusha/core/usecase/usecase.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/domain/entities/announcement.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/domain/repositories/announcement_repository.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/domain/usecases/get_announcement_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/domain/entities/announcement.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/domain/repositories/announcement_repository.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/domain/usecases/get_announcement_usecase.dart';
 
 import 'get_announcement_test.mocks.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/models/announcement_model.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/domain/entities/announcement.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/models/announcement_model.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/domain/entities/announcement.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 

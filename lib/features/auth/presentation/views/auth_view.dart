@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/home_student/presentation/views/home_student_view.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/views/login_view.dart';
-import 'package:siakad_sma_al_fusha/features/student/home_student/presentation/views/home_student_view.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 

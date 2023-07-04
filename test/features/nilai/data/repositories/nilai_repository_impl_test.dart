@@ -7,10 +7,10 @@ import 'package:mockito/mockito.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/core/error/failures.dart';
 import 'package:siakad_sma_al_fusha/core/error/model/error.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/datasources/nilai_local_datasource.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/datasources/nilai_remote_datasource.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/models/nilai_model.dart';
-import 'package:siakad_sma_al_fusha/features/student/score_student/data/repositories/nilai_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_local_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_remote_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/data/models/nilai_model.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/data/repositories/nilai_repository_impl.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import '../../../login/data/repositories/login_repository_impl_test.mocks.dart';

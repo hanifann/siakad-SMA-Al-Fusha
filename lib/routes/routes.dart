@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/domain/entities/announcement.dart';
+import 'package:siakad_sma_al_fusha/features/announcement_detail/views/announcement_detail_view.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/views/auth_view.dart';
+import 'package:siakad_sma_al_fusha/features/home_student/presentation/views/home_student_view.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/views/login_view.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_detail_student/views/announcement_detail_student_view.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/domain/entities/announcement.dart';
-import 'package:siakad_sma_al_fusha/features/student/home_student/presentation/views/home_student_view.dart';
 
 // GoRouter configuration
 final router = GoRouter(
@@ -24,7 +24,7 @@ final router = GoRouter(
       path: '/pengumuman_detail',
       builder: (context, state) {
         AnnouncementDatum announcement = state.extra as AnnouncementDatum;
-        return AnnouncementDetailStudentView(announcement: announcement);
+        return AnnouncementDetailView(announcement: announcement);
       }
     )
   ],

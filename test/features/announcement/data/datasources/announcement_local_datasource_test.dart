@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/datasources/announcement_local_datasource.dart';
-import 'package:siakad_sma_al_fusha/features/student/announcement_student/data/models/announcement_model.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/datasources/announcement_local_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/announcement/data/models/announcement_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import '../../../login/data/datasources/login_local_datasource_test.mocks.dart';
