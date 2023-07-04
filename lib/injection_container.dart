@@ -36,7 +36,7 @@ Future<void> init() async {
   //!features
   //auth
   //bloc
-  sl.registerFactory(() => AuthCubit(sl()));
+  sl.registerFactory(() => AuthCubit(sl(), sl()));
 
   //login
   //bloc
