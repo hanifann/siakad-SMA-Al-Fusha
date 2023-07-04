@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/home/presentation/views/home_lecturer_view.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/views/home_student_view.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/views/login_view.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
@@ -28,7 +29,11 @@ class AuthPage extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         if(state is AuthAuthenticated){
-          return const HomeStudentView();
+          if (state.id == '2') {
+            return const HomeStudentView();
+          } else {
+            return const HomeLecturerView();
+          }
         } else if (state is AuthUnauthorized){
           return const LoginView();
         } else {
