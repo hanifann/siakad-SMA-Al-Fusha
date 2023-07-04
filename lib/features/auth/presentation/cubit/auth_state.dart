@@ -14,5 +14,9 @@ class AuthUnauthorized extends AuthState{
 }
 
 class AuthAuthenticated extends AuthState {
-  
+  final String id;
+
+  const AuthAuthenticated(this.id);
 }
+
+class UserDataLoaded extends AuthState {}
