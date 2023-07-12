@@ -22,3 +22,9 @@ class ScheduleFailed extends ScheduleState {
 }
 
 class ScheduleLoading extends ScheduleState {}
+
+class  UserDataLoaded extends ScheduleState {
+  final User user;
+
+  const UserDataLoaded(this.user);
+}

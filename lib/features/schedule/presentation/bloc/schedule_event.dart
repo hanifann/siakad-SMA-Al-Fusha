@@ -16,3 +16,7 @@ class GetScheduleEvent extends ScheduleEvent {
     required this.day
   });
 }
+
+class GetUserIdEvent extends ScheduleEvent{
+  
+}
