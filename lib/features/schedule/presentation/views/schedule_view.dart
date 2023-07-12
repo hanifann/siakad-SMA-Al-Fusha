@@ -4,7 +4,7 @@ import 'package:dart_date/dart_date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:siakad_sma_al_fusha/features/schedule/domain/models/day_model.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/data/models/day_model.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/widgets/container_day_widget.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
