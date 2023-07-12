@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "Guru Pengampu": "guruPengampu",
+            "mapel": "mapel",
+            "kelas": "kelas",
+            "jam": "jam",
+            "jumlah_jam": "jumlahJam",
+            "hari": "hari"
+        }
+    ]
+}
