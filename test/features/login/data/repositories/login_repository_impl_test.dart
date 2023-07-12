@@ -49,7 +49,8 @@ void main() {
     tmk: null, 
     jabatan: 'jabatan', 
     alamat: 'alamat', 
-    tgsTam: 'tgsTam'
+    tgsTam: 'tgsTam',
+    idKelas: 'idKelas'
   );
   const tUser = UserModel(data: [tUserDatum]);
 

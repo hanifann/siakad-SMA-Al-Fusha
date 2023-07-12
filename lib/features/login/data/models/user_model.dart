@@ -23,7 +23,8 @@ class UserModel extends User {
             tmk: x.tmk, 
             jabatan: x.jabatan, 
             alamat: x.alamat, 
-            tgsTam: x.tgsTam
+            tgsTam: x.tgsTam,
+            idKelas: x.idKelas
           ).toJson()
         )),
     };
@@ -42,7 +43,8 @@ class UserDatumModel extends UserDatum {
     required super.tmk, 
     required super.jabatan, 
     required super.alamat, 
-    required super.tgsTam
+    required super.tgsTam,
+    required super.idKelas
   });
 
   factory UserDatumModel.fromJson(Map<String, dynamic> json) => UserDatumModel(
@@ -59,6 +61,7 @@ class UserDatumModel extends UserDatum {
         jabatan: json["jabatan"],
         alamat: json["alamat"],
         tgsTam: json["tgs_tam"],
+        idKelas: json['id_kelas']
     );
 
     Map<String, dynamic> toJson() => {
@@ -74,6 +77,7 @@ class UserDatumModel extends UserDatum {
         "jabatan": jabatan,
         "alamat": alamat,
         "tgs_tam": tgsTam,
+        "id_kelas": idKelas
     };
   
 }

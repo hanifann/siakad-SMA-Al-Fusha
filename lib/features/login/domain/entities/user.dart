@@ -27,6 +27,7 @@ class UserDatum extends Equatable{
     final String? jabatan;
     final String alamat;
     final String? tgsTam;
+    final String idKelas;
 
     const UserDatum({
         required this.id,
@@ -41,6 +42,7 @@ class UserDatum extends Equatable{
         required this.jabatan,
         required this.alamat,
         required this.tgsTam,
+        required this.idKelas
     });
     
       @override
@@ -56,7 +58,8 @@ class UserDatum extends Equatable{
         tmk,
         jabatan,
         alamat,
-        tgsTam
+        tgsTam,
+        idKelas
       ];
 
 }

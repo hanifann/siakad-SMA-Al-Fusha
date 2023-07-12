@@ -7,12 +7,13 @@
             "role": "2",
             "id_users": "13",
             "tempat": "tempat",
-            "tgl_lahir": "2023-01-01",
+            "tgl_lahir": null,
             "pendidikan": null,
-            "tmk": "2023-01-01",
+            "tmk": null,
             "jabatan": "jabatan",
             "alamat": "alamat",
-            "tgs_tam": "tgsTam"
+            "tgs_tam": "tgsTam",
+            "id_kelas": "idKelas"
         }
     ]
 }

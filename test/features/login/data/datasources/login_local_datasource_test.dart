@@ -51,7 +51,8 @@ void main() {
         tmk: DateTime(2023), 
         jabatan: 'jabatan', 
         alamat: 'alamat', 
-        tgsTam: 'tgsTam'
+        tgsTam: 'tgsTam',
+        idKelas: 'idKelas'
       );
   
       final tUserModel = UserModel(data: [tUserDatumModel]);

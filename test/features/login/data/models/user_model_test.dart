@@ -7,22 +7,23 @@ import 'package:siakad_sma_al_fusha/features/login/domain/entities/user.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tUserDatumModel = UserDatumModel(
+  const tUserDatumModel = UserDatumModel(
     id: '1', 
     nama: 'nama', 
     username: 'username', 
     role: '2', 
     idUsers: '13', 
     tempat: 'tempat', 
-    tglLahir: DateTime(2023), 
+    tglLahir:null, 
     pendidikan: null, 
-    tmk: DateTime(2023), 
+    tmk: null, 
     jabatan: 'jabatan', 
     alamat: 'alamat', 
-    tgsTam: 'tgsTam'
+    tgsTam: 'tgsTam',
+    idKelas: 'idKelas'
   );
 
-  final tUserModel = UserModel(data: [tUserDatumModel]);
+  const tUserModel = UserModel(data: [tUserDatumModel]);
 
   test('should be subclass of entity', () {
     //assert

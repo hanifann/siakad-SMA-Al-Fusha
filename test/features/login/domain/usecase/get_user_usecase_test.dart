@@ -31,7 +31,8 @@ void main() {
     tmk: null, 
     jabatan: 'jabatan', 
     alamat: 'alamat', 
-    tgsTam: 'tgsTam'
+    tgsTam: 'tgsTam',
+    idKelas: 'idKelas'
   );
   const tUser = User(data: [tUserDatum]);
 
