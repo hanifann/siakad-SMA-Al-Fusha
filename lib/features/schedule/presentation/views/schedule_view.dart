@@ -2,11 +2,17 @@ import 'dart:developer';
 
 import 'package:dart_date/dart_date.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/data/models/day_model.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/widgets/container_day_widget.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/presentation/widgets/container_schedule_data_widget.dart';
+import 'package:siakad_sma_al_fusha/injection_container.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
+import 'package:siakad_sma_al_fusha/widgets/error_widget.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class ScheduleView extends StatelessWidget {
@@ -14,7 +20,10 @@ class ScheduleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SchedulePage();
+    return BlocProvider(
+      create: (context) => sl<ScheduleBloc>()..add(GetUserIdEvent()),
+      child: const SchedulePage(),
+    );
   }
 }
 
@@ -80,53 +89,71 @@ class _SchedulePageState extends State<SchedulePage> {
             weight: FontWeight.w500,
           ),
           SizedBox(height: 24.h,),
-          ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return Container(
-                  padding: EdgeInsets.only(left: 4.w),
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(8.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: kPrimaryColor.withOpacity(.15),
-                        blurRadius: 15
-                      )
-                    ]
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 9.h),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(8.r),
-                        bottomRight: Radius.circular(8.r)
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomTextWidget(
-                          text: 'Matematika',
-                          size: 14.sp,
-                          weight: FontWeight.bold,
-                        ),
-                        // SizedBox(height: 10.h,),
-                        CustomTextWidget(
-                          text: '07.30 - 09.30',
-                          size: 12.sp,
-                        ),
-                      ],
-                    )
-                  ),
-                );
-            }, 
-            separatorBuilder: (_,__) => SizedBox(height: 16.h,), 
-            itemCount: 2
-          )
+          blocConsumeScheduleWidget()
         ],
       ),
+    );
+  }
+
+  BlocConsumer<ScheduleBloc, ScheduleState> blocConsumeScheduleWidget() {
+    return BlocConsumer<ScheduleBloc, ScheduleState>(
+      listener: (context, state) {
+        if(state is UserDataLoaded){
+          log(state.user.data[0].idKelas);
+          context.read<ScheduleBloc>().add(
+            GetScheduleEvent(
+              id: state.user.data[0].idKelas, 
+              day: day.where(
+                (element) => element.isSelected == true
+              ).first.day.toLowerCase()
+            )
+          );
+        }
+      },
+      builder: (context, state) {
+        if(state is ScheduleLoaded){
+          return scheduleLoadedWidget(state);
+        } else if (state is ScheduleFailed){
+          return CustomErrorWidget(message: state.error.message!);
+        } else {
+          return scheduleLoadingWidget();
+        }
+      },
+    );
+  }
+
+  ListView scheduleLoadingWidget() {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Shimmer.fromColors(
+          baseColor: Colors.white,
+          highlightColor: kPrimaryColor.withOpacity(.1),
+          child: Container(
+            height: 80.h,
+            width: 1.sw,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.r),
+              color: Colors.white
+            ),
+          ),
+        );
+      }, 
+      separatorBuilder: (_,__) => SizedBox(height: 16.h,), 
+      itemCount: 2
+    );
+  }
+
+  ListView scheduleLoadedWidget(ScheduleLoaded state) {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return ContainerDataScheduleWidget(
+          scheduleData: state.schedule.data[index],
+        );
+      }, 
+      separatorBuilder: (_,__) => SizedBox(height: 16.h,), 
+      itemCount: state.schedule.data.length
     );
   }
 
@@ -146,6 +173,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 }
                 day[index].isSelected = true;
               });
+              context.read<ScheduleBloc>().add(GetUserIdEvent());
             },
           );
         },
