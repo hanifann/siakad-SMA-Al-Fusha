@@ -23,6 +23,11 @@ import 'package:siakad_sma_al_fusha/features/home/data/repositories/role_reposit
 import 'package:siakad_sma_al_fusha/features/home/domain/repositories/role_repository.dart';
 import 'package:siakad_sma_al_fusha/features/home/domain/usecases/get_role_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/cubit/role_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/data/datasources/schedule_remote_data_source.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/data/repositories/schedule_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/domain/repositories/schedule_repository.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/domain/usecases/get_schedule_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_local_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/repositories/nilai_repository_impl.dart';
@@ -115,6 +120,23 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<AnnouncementLocalDataSource>(
     () => AnnouncementLocalDataSourceImpl(preferences: sl())
+  );
+
+  //schedule
+  //bloc
+  sl.registerFactory(() => ScheduleBloc(useCase: sl(), roleUseCase: sl()));
+  //usecases
+  sl.registerLazySingleton(() => GetScheduleUseCase(repository: sl()));
+  //repository
+  sl.registerLazySingleton<ScheduleRepository>(
+    () => ScheduleRepositoryImpl(
+      networkInfo: sl(), 
+      remoteDataSource: sl()
+    )
+  );
+  //datasources
+  sl.registerLazySingleton<ScheduleRemoteDataSource>(
+    () => ScheduleRemoteDataSourceImpl(client: sl(), preferences: sl())
   );
   
 
