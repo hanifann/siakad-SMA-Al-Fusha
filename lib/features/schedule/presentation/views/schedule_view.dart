@@ -99,7 +99,6 @@ class _SchedulePageState extends State<SchedulePage> {
     return BlocConsumer<ScheduleBloc, ScheduleState>(
       listener: (context, state) {
         if(state is UserDataLoaded){
-          log(state.user.data[0].idKelas);
           context.read<ScheduleBloc>().add(
             GetScheduleEvent(
               id: state.user.data[0].idKelas, 
