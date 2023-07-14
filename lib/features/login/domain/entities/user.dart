@@ -27,7 +27,7 @@ class UserDatum extends Equatable{
     final String? jabatan;
     final String alamat;
     final String? tgsTam;
-    final String idKelas;
+    final String? idKelas;
 
     const UserDatum({
         required this.id,
