@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/views/announcement_view.dart';
 import 'package:siakad_sma_al_fusha/features/beranda/presentation/views/beranda_view.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/class_view.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/cubit/role_cubit.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/views/schedule_view.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
@@ -34,7 +35,7 @@ class _HomeLecturerPageState extends State<HomeLecturerPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     BerandaView(),
     ScheduleView(),
-    Text('penilaian'),
+    ClassView(),
     AnnouncementView()
   ];
 
@@ -107,7 +108,9 @@ class _HomeLecturerPageState extends State<HomeLecturerPage> {
       elevation: 1,
       centerTitle: false,
       title: CustomTextWidget(
-        text: _title[_selectedIndex],
+        text: _selectedIndex == 2 ? 
+        'Daftar kelas' : 
+        _title[_selectedIndex],
         weight: FontWeight.bold,
         size: 24.sp,
       ),
