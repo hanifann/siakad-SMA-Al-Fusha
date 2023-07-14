@@ -1,0 +1,41 @@
+import 'package:dartz/dartz.dart';
+import 'package:siakad_sma_al_fusha/core/error/exception.dart';
+import 'package:siakad_sma_al_fusha/core/error/failures.dart';
+import 'package:siakad_sma_al_fusha/core/platform/network_info.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/class.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/evaluation_repository.dart';
+
+class EvaluationRepositoryImpl implements EvaluationRepository {
+  final NetworkInfo networkInfo;
+  final EvaluationRemoteDataSource remoteDataSource;
+  final EvaluationLocalDataSource localDataSource;
+
+  EvaluationRepositoryImpl({
+    required this.networkInfo, 
+    required this.remoteDataSource, 
+    required this.localDataSource
+  });
+
+  @override
+  Future<Either<Failure, Class>>? getAllClass() async {
+    if(await networkInfo.isConnected){
+      try {
+        final response = await remoteDataSource.getALlClass();
+        localDataSource.cachedKelas(response!);
+        return Right(response);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.error.message));
+      }
+    } else {
+      try{
+        final result = await localDataSource.getCahchedKelas();
+        return Right(result!);
+      } on CacheException catch(e) {
+        return Left(CacheFailure(message: e.message));
+      }
+    }
+  }
+  
+}
