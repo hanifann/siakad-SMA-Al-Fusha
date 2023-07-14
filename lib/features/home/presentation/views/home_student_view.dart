@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/views/announcement_view.dart';
 import 'package:siakad_sma_al_fusha/features/beranda/presentation/views/beranda_view.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/cubit/role_cubit.dart';
@@ -74,7 +75,7 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(),
+      appBar: appBarWidget(context),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: DecoratedBox(
         decoration: BoxDecoration(
@@ -103,7 +104,7 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
     );
   }
 
-  AppBar appBarWidget() {
+  AppBar appBarWidget(BuildContext context) {
     return AppBar(
       elevation: 1,
       centerTitle: false,
@@ -113,32 +114,35 @@ class _HomeStudentPageState extends State<HomeStudentPage> {
         size: 24.sp,
       ),
       actions: [
-        Container(
-          padding: EdgeInsets.all(8.r),
-          margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(666.r),
-            color: kPrimaryColor,
-          ),
-          child: BlocBuilder<RoleCubit, RoleState>(
-            builder: (context, state) {
-              if(state is RoleLoaded){
-                return CustomTextWidget(
-                  text: state.role,
-                  color: Colors.white,
-                  weight: FontWeight.bold,
-                  size: 14.sp,
-                );
-              } else {
-                return CustomTextWidget(
-                  text: '...',
-                  color: Colors.white,
-                  weight: FontWeight.bold,
-                  size: 14.sp,
-                );
-              }
-            },
+        GestureDetector(
+          onTap: () => context.push('/profile'),
+          child: Container(
+            padding: EdgeInsets.all(8.r),
+            margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(666.r),
+              color: kPrimaryColor,
+            ),
+            child: BlocBuilder<RoleCubit, RoleState>(
+              builder: (context, state) {
+                if(state is RoleLoaded){
+                  return CustomTextWidget(
+                    text: state.role,
+                    color: Colors.white,
+                    weight: FontWeight.bold,
+                    size: 14.sp,
+                  );
+                } else {
+                  return CustomTextWidget(
+                    text: '...',
+                    color: Colors.white,
+                    weight: FontWeight.bold,
+                    size: 14.sp,
+                  );
+                }
+              },
+            ),
           ),
         )
       ],
