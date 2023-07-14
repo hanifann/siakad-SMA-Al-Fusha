@@ -147,7 +147,7 @@ Future<void> init() async {
 
   //evaluation
   //bloc
-  sl.registerFactory(() => ClassBloc(classUseCase: sl(), tokenUseCase: sl()));
+  sl.registerFactory(() => ClassBloc(classUseCase: sl()));
   //usecases
   sl.registerLazySingleton(() => GetAllClassUseCase(repository: sl()));
   //repositories
