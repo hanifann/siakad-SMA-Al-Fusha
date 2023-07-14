@@ -10,6 +10,12 @@ import 'package:siakad_sma_al_fusha/features/announcement/domain/repositories/an
 import 'package:siakad_sma_al_fusha/features/announcement/domain/usecases/get_announcement_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/views/bloc/announcement_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/repositories/evaluation_repository_impl.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/evaluation_repository.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/usecases/get_all_class_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/class_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_local_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/login/data/repositories/login_repository_impl.dart';
@@ -137,6 +143,27 @@ Future<void> init() async {
   //datasources
   sl.registerLazySingleton<ScheduleRemoteDataSource>(
     () => ScheduleRemoteDataSourceImpl(client: sl(), preferences: sl())
+  );
+
+  //evaluation
+  //bloc
+  sl.registerFactory(() => ClassBloc(classUseCase: sl(), tokenUseCase: sl()));
+  //usecases
+  sl.registerLazySingleton(() => GetAllClassUseCase(repository: sl()));
+  //repositories
+  sl.registerLazySingleton<EvaluationRepository>(
+    () => EvaluationRepositoryImpl(
+      networkInfo: sl(), 
+      remoteDataSource: sl(), 
+      localDataSource: sl()
+    )
+  );
+  //datasources
+  sl.registerLazySingleton<EvaluationRemoteDataSource>(
+    () => EvaluationRemoteDataSourceImpl(client: sl(), preferences: sl())
+  );
+  sl.registerLazySingleton<EvaluationLocalDataSource>(
+    () => EvaluationLocalDataSourceImpl(preferences: sl())
   );
   
 
