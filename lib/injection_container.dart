@@ -29,6 +29,7 @@ import 'package:siakad_sma_al_fusha/features/home/data/repositories/role_reposit
 import 'package:siakad_sma_al_fusha/features/home/domain/repositories/role_repository.dart';
 import 'package:siakad_sma_al_fusha/features/home/domain/usecases/get_role_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/cubit/role_cubit.dart';
+import 'package:siakad_sma_al_fusha/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/data/datasources/schedule_remote_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/data/repositories/schedule_repository_impl.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/domain/repositories/schedule_repository.dart';
@@ -165,6 +166,10 @@ Future<void> init() async {
   sl.registerLazySingleton<EvaluationLocalDataSource>(
     () => EvaluationLocalDataSourceImpl(preferences: sl())
   );
+
+  //profile
+  //bloc
+  sl.registerFactory(() => ProfileBloc(sl()));
   
 
   //!external
