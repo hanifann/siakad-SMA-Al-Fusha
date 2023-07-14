@@ -14,4 +14,6 @@ abstract class Env {
   static String nilai = _Env.nilai;
   @EnviedField(obfuscate: true, varName: 'ANNOUNCEMENT_KEY')
   static String announcement = _Env.announcement;
+  @EnviedField(obfuscate: true, varName: 'CLASS_KEY')
+  static String classKey = _Env.classKey;
 }
