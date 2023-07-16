@@ -37,7 +37,7 @@ class ScheduleDataModel extends ScheduleData {
         guruPengampu: json["Guru Pengampu"],
         mapel: json["mapel"],
         kelas: json["kelas"],
-        jam: json["jam"],
+        jam: json["jam"] ?? json['jam_mengajar'],
         jumlahJam: json["jumlah_jam"],
         hari: json["hari"],
     );
