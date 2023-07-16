@@ -34,6 +34,7 @@ import 'package:siakad_sma_al_fusha/features/schedule/data/datasources/schedule_
 import 'package:siakad_sma_al_fusha/features/schedule/data/repositories/schedule_repository_impl.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/domain/repositories/schedule_repository.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/domain/usecases/get_schedule_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/domain/usecases/get_teaching_schedule_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_local_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_remote_datasource.dart';
@@ -131,9 +132,12 @@ Future<void> init() async {
 
   //schedule
   //bloc
-  sl.registerFactory(() => ScheduleBloc(useCase: sl(), roleUseCase: sl()));
+  sl.registerFactory(() => ScheduleBloc(
+    useCase: sl(), roleUseCase: sl(), teachingScheduleUseCase: sl())
+  );
   //usecases
   sl.registerLazySingleton(() => GetScheduleUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetTeachingScheduleUseCase(sl()));
   //repository
   sl.registerLazySingleton<ScheduleRepository>(
     () => ScheduleRepositoryImpl(
