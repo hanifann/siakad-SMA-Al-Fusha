@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/data/models/day_model.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/domain/entities/schedule.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/widgets/container_day_widget.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/widgets/container_schedule_data_widget.dart';
@@ -99,19 +100,29 @@ class _SchedulePageState extends State<SchedulePage> {
     return BlocConsumer<ScheduleBloc, ScheduleState>(
       listener: (context, state) {
         if(state is UserDataLoaded){
-          context.read<ScheduleBloc>().add(
-            GetScheduleEvent(
-              id: state.user.data[0].idKelas, 
-              day: day.where(
-                (element) => element.isSelected == true
-              ).first.day.toLowerCase()
-            )
-          );
+          if(state.user.data[0].role == '2'){
+            context.read<ScheduleBloc>().add(
+              GetScheduleEvent(
+                id: state.user.data[0].idKelas!,
+                day: day.where(
+                  (element) => element.isSelected == true
+                ).first.day.toLowerCase()
+              )
+            );
+          } else {
+            context.read<ScheduleBloc>().add(
+              GetTeachingScheduleEvent(
+                state.user.data[0].idUsers
+              )
+            );
+          }
         }
       },
       builder: (context, state) {
         if(state is ScheduleLoaded){
-          return scheduleLoadedWidget(state);
+          final tempDay = day.where((element) => element.isSelected == true).first.day.toLowerCase();
+          final tempState = state.schedule.data.where((element) => element.hari == tempDay).toList();
+          return scheduleLoadedWidget(tempState);
         } else if (state is ScheduleFailed){
           return CustomErrorWidget(message: state.error.message!);
         } else {
@@ -143,16 +154,16 @@ class _SchedulePageState extends State<SchedulePage> {
     );
   }
 
-  ListView scheduleLoadedWidget(ScheduleLoaded state) {
+  ListView scheduleLoadedWidget(List<ScheduleData> state) {
     return ListView.separated(
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return ContainerDataScheduleWidget(
-          scheduleData: state.schedule.data[index],
+          scheduleData: state[index],
         );
       }, 
       separatorBuilder: (_,__) => SizedBox(height: 16.h,), 
-      itemCount: state.schedule.data.length
+      itemCount: state.length
     );
   }
 

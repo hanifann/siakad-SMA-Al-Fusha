@@ -50,9 +50,12 @@ class ContainerDataScheduleWidget extends StatelessWidget {
               '${DateFormat.Hms().format(totalJamPelajaran(scheduleData.jam))}',
               size: 12.sp,
             ),
-            CustomTextWidget(
-              text: scheduleData.guruPengampu,
-              size: 12.sp,
+            Visibility(
+              visible: scheduleData.guruPengampu != null ? true : false,
+              child: CustomTextWidget(
+                text: scheduleData.guruPengampu.toString(),
+                size: 12.sp,
+              ),
             ),
             CustomTextWidget(
               text: scheduleData.kelas,
