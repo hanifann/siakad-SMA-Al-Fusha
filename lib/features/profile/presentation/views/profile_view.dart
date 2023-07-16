@@ -100,8 +100,7 @@ class ProfilePage extends StatelessWidget {
           ),
           child: ElevatedButton(
             onPressed: (){
-              sl<SharedPreferences>().clear();
-              context.go('/');
+              sl<SharedPreferences>().clear().then((_) => context.go('/'));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
