@@ -17,6 +17,12 @@ class GetScheduleEvent extends ScheduleEvent {
   });
 }
 
+class GetTeachingScheduleEvent extends ScheduleEvent {
+  final String id;
+
+  const GetTeachingScheduleEvent(this.id);
+}
+
 class GetUserIdEvent extends ScheduleEvent{
   
 }

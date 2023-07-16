@@ -6,6 +6,7 @@ import 'package:siakad_sma_al_fusha/features/home/domain/usecases/get_role_useca
 import 'package:siakad_sma_al_fusha/features/login/domain/entities/user.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/domain/entities/schedule.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/domain/usecases/get_schedule_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/schedule/domain/usecases/get_teaching_schedule_usecase.dart';
 
 part 'schedule_event.dart';
 part 'schedule_state.dart';
@@ -13,14 +14,17 @@ part 'schedule_state.dart';
 class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
   ScheduleBloc({
     required this.useCase,
-    required this.roleUseCase
+    required this.roleUseCase,
+    required this.teachingScheduleUseCase
   }) : super(ScheduleInitial()) {
     on<GetScheduleEvent>(_onGetScheduleEvent);
+    on<GetTeachingScheduleEvent>(_onGetTeachingScheduleEvent);
     on<GetUserIdEvent>(_onGetUSerIdEvent);
   }
 
   final GetScheduleUseCase useCase;
   final GetRoleUseCase roleUseCase;
+  final GetTeachingScheduleUseCase teachingScheduleUseCase;
 
   void _onGetScheduleEvent(
     GetScheduleEvent event,
@@ -29,6 +33,21 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
     emit(ScheduleLoading());
     final result = await useCase(
       ScheduleParam(id: event.id, day: event.day)
+    );
+
+    result!.fold(
+      (l) => emit(ScheduleFailed(ErrorModel(message: l.message))), 
+      (r) => emit(ScheduleLoaded(r))
+    );
+  }
+
+  void _onGetTeachingScheduleEvent(
+    GetTeachingScheduleEvent event,
+    Emitter<ScheduleState> emit,
+  ) async {
+    emit(ScheduleLoading());
+    final result = await teachingScheduleUseCase(
+      TeachingScheduleParam(event.id)
     );
 
     result!.fold(

@@ -4,4 +4,5 @@ import 'package:siakad_sma_al_fusha/features/schedule/domain/entities/schedule.d
 
 abstract class ScheduleRepository {
   Future<Either<Failure, Schedule>>? getSchedule(String id, String day);
+  Future<Either<Failure, Schedule>>? getTeachingSchedule(String id);
 }

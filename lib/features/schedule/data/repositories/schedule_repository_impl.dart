@@ -29,4 +29,18 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
     }
   }
   
+  @override
+  Future<Either<Failure, Schedule>>? getTeachingSchedule(String id) async {
+    if(await networkInfo.isConnected){
+      try {
+        final response = await remoteDataSource.getTeachingSchedule(id);
+        return Right(response!);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.error.message));
+      }
+    } else {
+      return const Left(ServerFailure());
+    }
+  }
+  
 }

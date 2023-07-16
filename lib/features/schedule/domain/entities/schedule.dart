@@ -15,7 +15,7 @@ class Schedule extends Equatable{
 }
 
 class ScheduleData extends Equatable{
-    final String guruPengampu;
+    final String? guruPengampu;
     final String mapel;
     final String kelas;
     final String jam;
