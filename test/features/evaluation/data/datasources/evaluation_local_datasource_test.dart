@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import '../../../login/data/datasources/login_local_datasource_test.mocks.dart';
@@ -41,6 +42,30 @@ void main() {
       final result = await localDataSourceImpl.getCahchedKelas();
       //assert
       expect(result, equals(tClass));
+    });
+  });
+
+  group('student by class', () {
+    final tStudent = StudentModel.fromJson(jsonDecode(fixture('student.json')));
+
+    test('should call sharedPreference to cache data', () async {
+      //act
+      localDataSourceImpl.chachedStudent(tStudent);
+      //assert
+      verify(mockSharedPreferences.setString(
+        Env.studentKey, 
+        jsonEncode(tStudent.toJson())
+      ));
+    });
+    
+    test('should return student data when available', () async{
+      //arrange
+      when(mockSharedPreferences.getString(Env.studentKey))
+        .thenAnswer((_) => fixture('student.json'));
+      //act
+      final result = await localDataSourceImpl.getChachedStudent();
+      //assert
+      expect(result, equals(tStudent));
     });
   });
 }

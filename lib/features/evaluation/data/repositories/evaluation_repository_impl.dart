@@ -5,6 +5,7 @@ import 'package:siakad_sma_al_fusha/core/platform/network_info.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/class.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/student.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/evaluation_repository.dart';
 
 class EvaluationRepositoryImpl implements EvaluationRepository {
@@ -31,6 +32,26 @@ class EvaluationRepositoryImpl implements EvaluationRepository {
     } else {
       try{
         final result = await localDataSource.getCahchedKelas();
+        return Right(result!);
+      } on CacheException catch(e) {
+        return Left(CacheFailure(message: e.message));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Student>>? getStudentByClass(String classId) async {
+   if(await networkInfo.isConnected){
+      try {
+        final response = await remoteDataSource.getStudentByClass(classId);
+        localDataSource.chachedStudent(response!);
+        return Right(response);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.error.message));
+      }
+    } else {
+      try{
+        final result = await localDataSource.getChachedStudent();
         return Right(result!);
       } on CacheException catch(e) {
         return Left(CacheFailure(message: e.message));

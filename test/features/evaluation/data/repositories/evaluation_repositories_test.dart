@@ -10,6 +10,7 @@ import 'package:siakad_sma_al_fusha/core/error/model/error.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_model.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/repositories/evaluation_repository_impl.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
@@ -114,6 +115,90 @@ void main() {
         final result = await repositoryImpl.getAllClass();
         //assert
         verify(localDataSource.getCahchedKelas());
+        verifyZeroInteractions(remoteDataSource);
+        expect(result, equals(const Left(CacheFailure(message: 'error'))));
+      });
+    });
+  });
+
+    group('student by class', () {
+    final tStudentModel = StudentModel.fromJson(jsonDecode(fixture('student.json')));
+    const tClassId = '1';
+
+    group('device is online', () {
+      setUp(() {
+        when(networkInfo.isConnected)
+          .thenAnswer((_) async => true);
+      });
+
+      test('should return student data when call to remote datasource success',
+      () async {
+        //arrange
+        when(remoteDataSource.getStudentByClass(tClassId))
+          .thenAnswer((_) async => tStudentModel);
+
+        //act
+        final response = await repositoryImpl.getStudentByClass(tClassId);
+
+        //assert
+        verify(remoteDataSource.getStudentByClass(tClassId));
+        expect(response, equals(Right(tStudentModel)));
+      });
+
+      test('should cached data when call to remote datasource success', 
+        () async{
+        //arrange
+        when(remoteDataSource.getStudentByClass(tClassId))
+          .thenAnswer((_) async => tStudentModel);
+        //act
+        await repositoryImpl.getStudentByClass(tClassId);
+        //assert
+        verify(remoteDataSource.getStudentByClass(tClassId));
+        verify(localDataSource.chachedStudent(tStudentModel));
+      });
+
+      test('should return ServerFailure when call to remote datasource failed',
+       () async {
+        //arrange
+        when(remoteDataSource.getStudentByClass(tClassId))
+          .thenThrow(ServerException(
+            error: const ErrorModel(message: 'error'))
+          );
+        //act
+        final response = await repositoryImpl.getStudentByClass(tClassId);
+        //assert
+        verify(remoteDataSource.getStudentByClass(tClassId));
+        expect(response, equals(const Left(ServerFailure(message: 'error'))));
+        verifyZeroInteractions(localDataSource);
+      });
+    });
+
+    group('device is offline', () {
+      setUp(() {
+        when(networkInfo.isConnected)
+          .thenAnswer((_) async => false);
+      });
+
+      test('should return last locally cached data', () async {
+        //arrange
+        when(localDataSource.getChachedStudent())
+          .thenAnswer((_) async => tStudentModel);
+        //act
+        final result = await repositoryImpl.getStudentByClass(tClassId);
+        //assert
+        verify(localDataSource.getChachedStudent());
+        verifyZeroInteractions(remoteDataSource);
+        expect(result, equals(Right(tStudentModel)));
+      });
+
+      test('should return CacheFailure when there is no chached data',()async{
+        //arrange
+        when(localDataSource.getChachedStudent())
+        .thenThrow(CacheException(message: 'error'));
+        //act
+        final result = await repositoryImpl.getStudentByClass(tClassId);
+        //assert
+        verify(localDataSource.getChachedStudent());
         verifyZeroInteractions(remoteDataSource);
         expect(result, equals(const Left(CacheFailure(message: 'error'))));
       });

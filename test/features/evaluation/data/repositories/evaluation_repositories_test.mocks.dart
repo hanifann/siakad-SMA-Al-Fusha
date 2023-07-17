@@ -3,15 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart'
-    as _i3;
+    as _i5;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart'
     as _i2;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart'
-    as _i5;
+    as _i6;
+import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_model.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,20 +30,39 @@ import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEvaluationRemoteDataSource extends _i1.Mock
-    implements _i2.EvaluationRemoteDataSource {}
+    implements _i2.EvaluationRemoteDataSource {
+  @override
+  _i3.Future<_i4.StudentModel>? getStudentByClass(String? classId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getStudentByClass,
+          [classId],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Future<_i4.StudentModel>?);
+}
 
 /// A class which mocks [EvaluationLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEvaluationLocalDataSource extends _i1.Mock
-    implements _i3.EvaluationLocalDataSource {
+    implements _i5.EvaluationLocalDataSource {
   @override
-  _i4.Future<void>? cachedKelas(_i5.ClassModel? classModel) =>
+  _i3.Future<void>? cachedKelas(_i6.ClassModel? classModel) =>
       (super.noSuchMethod(
         Invocation.method(
           #cachedKelas,
           [classModel],
         ),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>?);
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>?);
+  @override
+  _i3.Future<void>? chachedStudent(_i4.StudentModel? studentModel) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #chachedStudent,
+          [studentModel],
+        ),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>?);
 }
