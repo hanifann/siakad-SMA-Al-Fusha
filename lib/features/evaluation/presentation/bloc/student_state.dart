@@ -24,3 +24,9 @@ class StudentFailed extends StudentState {
 class StudentLoading extends StudentState {
   
 }
+
+class TokenLoaded extends StudentState {
+  final User user;
+
+  const TokenLoaded(this.user);
+}

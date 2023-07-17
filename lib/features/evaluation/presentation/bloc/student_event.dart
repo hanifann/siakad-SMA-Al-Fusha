@@ -12,3 +12,7 @@ class GetStudentByClassEvent extends StudentEvent {
 
   const GetStudentByClassEvent(this.classId);
 }
+
+class GetTokenEvent extends StudentEvent {
+  
+}
