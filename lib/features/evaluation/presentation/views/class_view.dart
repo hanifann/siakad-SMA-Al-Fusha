@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/class_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/widgets/container_data_kelas_widget.dart';
@@ -36,7 +37,15 @@ class ClassPage extends StatelessWidget {
           return  ListView.separated(
             padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
             itemBuilder: (context, index){
-              return ContainerDataKelasWidget(classData: state.data.data[index]);
+              return GestureDetector(
+                onTap: () {
+                  context.push(
+                    '/student',
+                    extra: state.data.data[index]
+                  );
+                },
+                child: ContainerDataKelasWidget(classData: state.data.data[index])
+              );
             }, 
             separatorBuilder: (_,__) => SizedBox(height: 12.h,), 
             itemCount: state.data.data.length
