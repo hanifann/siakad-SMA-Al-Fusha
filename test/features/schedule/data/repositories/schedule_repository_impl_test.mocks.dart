@@ -42,4 +42,13 @@ class MockScheduleRemoteDataSource extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       ) as _i3.Future<_i4.ScheduleModel>?);
+  @override
+  _i3.Future<_i4.ScheduleModel>? getTeachingSchedule(String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTeachingSchedule,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Future<_i4.ScheduleModel>?);
 }

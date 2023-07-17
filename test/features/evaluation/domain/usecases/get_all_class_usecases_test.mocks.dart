@@ -3,7 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i3;
+
+import 'package:dartz/dartz.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:siakad_sma_al_fusha/core/error/failures.dart' as _i5;
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/student.dart'
+    as _i6;
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/evaluation_repository.dart'
     as _i2;
 
@@ -22,4 +28,15 @@ import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/eval
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEvaluationRepository extends _i1.Mock
-    implements _i2.EvaluationRepository {}
+    implements _i2.EvaluationRepository {
+  @override
+  _i3.Future<_i4.Either<_i5.Failure, _i6.Student>>? getStudentByClass(
+          String? classId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getStudentByClass,
+          [classId],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Student>>?);
+}

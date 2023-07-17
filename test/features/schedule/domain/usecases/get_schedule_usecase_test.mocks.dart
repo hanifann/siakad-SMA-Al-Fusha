@@ -44,4 +44,14 @@ class MockScheduleRepository extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Schedule>>?);
+  @override
+  _i3.Future<_i4.Either<_i5.Failure, _i6.Schedule>>? getTeachingSchedule(
+          String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTeachingSchedule,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Schedule>>?);
 }
