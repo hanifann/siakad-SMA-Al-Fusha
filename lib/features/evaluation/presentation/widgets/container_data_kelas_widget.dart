@@ -5,9 +5,14 @@ import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class ContainerDataKelasWidget extends StatelessWidget {
-  const ContainerDataKelasWidget({super.key, required this.classData});
+  const ContainerDataKelasWidget({
+    super.key, 
+    required this.classData, 
+    this.isKelas = true
+  });
 
   final ClassData classData;
+  final bool isKelas;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class ContainerDataKelasWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextWidget(
-              text: 'Kelas',
+              text: isKelas ? 'Kelas' : 'Nama',
               size: 14.sp,
               weight: FontWeight.bold,
             ),
