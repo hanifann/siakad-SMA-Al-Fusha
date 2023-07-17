@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_model.dart';
-import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/student.dart';
 
 abstract class EvaluationLocalDataSource {
   Future<void>? cachedKelas(ClassModel classModel);
