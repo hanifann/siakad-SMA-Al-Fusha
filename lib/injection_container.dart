@@ -17,6 +17,7 @@ import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/eval
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/usecases/get_all_class_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/usecases/get_lesson_code_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/usecases/get_student_by_class_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/usecases/post_score_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/class_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/lesson_code_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/score_bloc.dart';
@@ -165,7 +166,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetAllClassUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetStudentByClassUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetLessonCodeUseCase(repository: sl()));
-  sl.registerLazySingleton(() => PostLoginUseCase(repository: sl()));
+  sl.registerLazySingleton(() => PostScoreUseCase(repository: sl()));
   //repositories
   sl.registerLazySingleton<EvaluationRepository>(
     () => EvaluationRepositoryImpl(
