@@ -8,6 +8,8 @@ import 'dart:async' as _i3;
 import 'package:dartz/dartz.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:siakad_sma_al_fusha/core/error/failures.dart' as _i5;
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/score.dart'
+    as _i7;
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/student.dart'
     as _i6;
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/evaluation_repository.dart'
@@ -39,4 +41,24 @@ class MockEvaluationRepository extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Student>>?);
+  @override
+  _i3.Future<_i4.Either<_i5.Failure, _i7.Score>>? postScore({
+    required String? lessonCode,
+    required String? rph,
+    required String? pts,
+    required String? pat,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #postScore,
+          [],
+          {
+            #lessonCode: lessonCode,
+            #rph: rph,
+            #pts: pts,
+            #pat: pat,
+          },
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Future<_i4.Either<_i5.Failure, _i7.Score>>?);
 }

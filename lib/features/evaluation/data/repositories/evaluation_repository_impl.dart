@@ -5,6 +5,8 @@ import 'package:siakad_sma_al_fusha/core/platform/network_info.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/class.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/lesson_code.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/score.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/student.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/domain/repositories/evaluation_repository.dart';
 
@@ -56,6 +58,50 @@ class EvaluationRepositoryImpl implements EvaluationRepository {
       } on CacheException catch(e) {
         return Left(CacheFailure(message: e.message));
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, LessonCode>>? getLessonCode() async {
+    if(await networkInfo.isConnected){
+      try {
+        final response = await remoteDataSource.getLessonCode();
+        localDataSource.cachedLessonCode(response!);
+        return Right(response);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.error.message));
+      }
+    } else {
+      try{
+        final result = await localDataSource.getCachedLessonCode();
+        return Right(result!);
+      } on CacheException catch(e) {
+        return Left(CacheFailure(message: e.message));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Score>>? postScore({
+    required String lessonCode, 
+    required String rph, 
+    required String pts, 
+    required String pat
+  }) async {
+    if(await networkInfo.isConnected){
+      try {
+        final response = await remoteDataSource.postScoreModel(
+          lessonCode: lessonCode,
+          rph: rph,
+          pts: pts,
+          pat: pat
+        );
+        return Right(response!);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.error.message));
+      }
+    } else {
+      return const Left(ServerFailure());
     }
   }
   

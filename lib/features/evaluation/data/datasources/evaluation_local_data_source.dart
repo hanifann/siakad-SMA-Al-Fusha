@@ -4,13 +4,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siakad_sma_al_fusha/core/error/exception.dart';
 import 'package:siakad_sma_al_fusha/env/env.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/data/models/lesson_code_model.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_model.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/lesson_code.dart';
 
 abstract class EvaluationLocalDataSource {
   Future<void>? cachedKelas(ClassModel classModel);
   Future<ClassModel>? getCahchedKelas();
   Future<void>? chachedStudent(StudentModel studentModel);
   Future<StudentModel>? getChachedStudent();
+  Future<LessonCode>? getCachedLessonCode();
+  Future<void>? cachedLessonCode(LessonCodeModel code);
 }
 
 class EvaluationLocalDataSourceImpl implements EvaluationLocalDataSource {
@@ -49,6 +53,24 @@ class EvaluationLocalDataSourceImpl implements EvaluationLocalDataSource {
     final jsonString = preferences.getString(Env.studentKey);
     if(jsonString != null){
       return Future.value(StudentModel.fromJson(jsonDecode(jsonString)));
+    } else {
+      throw CacheException();
+    }
+  }
+  
+  @override
+  Future<void>? cachedLessonCode(LessonCodeModel code) {
+    return preferences.setString(
+      Env.codeKey,
+      jsonEncode(code.toJson())
+    );
+  }
+  
+  @override
+  Future<LessonCode>? getCachedLessonCode() {
+    final jsonString = preferences.getString(Env.codeKey);
+    if(jsonString != null){
+      return Future.value(LessonCodeModel.fromJson(jsonDecode(jsonString)));
     } else {
       throw CacheException();
     }
