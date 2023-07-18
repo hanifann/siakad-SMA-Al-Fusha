@@ -3,6 +3,7 @@ import 'package:siakad_sma_al_fusha/features/announcement/domain/entities/announ
 import 'package:siakad_sma_al_fusha/features/announcement_detail/views/announcement_detail_view.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/views/auth_view.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/input_score_view.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/student_view.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/views/home_student_view.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/views/login_view.dart';
@@ -39,6 +40,16 @@ final router = GoRouter(
       builder: (context, state) {
         ClassDataModel classDataModel = state.extra as ClassDataModel;
         return StudentView(classDataModel: classDataModel);
+      }
+    ),
+    GoRoute(
+      path: '/input_score',
+      name: '/input_score',
+      builder: (context, state) {
+        return InputScoreView(
+          idUser: state.queryParameters['idUser']!,
+          namaSiswa: state.queryParameters['namaSiswa']!,
+        );
       }
     ),
   ],
