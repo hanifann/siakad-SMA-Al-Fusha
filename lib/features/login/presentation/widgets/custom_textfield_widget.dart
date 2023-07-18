@@ -10,6 +10,7 @@ class CustomTextfieldWidget extends StatelessWidget {
     this.isObscure = false,
     this.onSuffixTap,
     this.isEnabled = true,
+    this.textInputType = TextInputType.text,
     super.key,
   });
   final TextEditingController controller;
@@ -18,6 +19,7 @@ class CustomTextfieldWidget extends StatelessWidget {
   final bool isObscure;
   final VoidCallback? onSuffixTap;
   final bool isEnabled;
+  final TextInputType textInputType;
 
 
   @override
@@ -27,6 +29,7 @@ class CustomTextfieldWidget extends StatelessWidget {
       cursorColor: kPrimaryColor,
       obscureText: isObscure,
       enabled: isEnabled,
+      keyboardType: textInputType,
       style: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 16.sp,
