@@ -7,11 +7,15 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_local_data_source.dart'
-    as _i5;
+    as _i6;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/datasources/evaluation_remote_datasource.dart'
     as _i2;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart'
-    as _i6;
+    as _i7;
+import 'package:siakad_sma_al_fusha/features/evaluation/data/models/lesson_code_model.dart'
+    as _i8;
+import 'package:siakad_sma_al_fusha/features/evaluation/data/models/score_model.dart'
+    as _i5;
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_model.dart'
     as _i4;
 
@@ -40,15 +44,37 @@ class MockEvaluationRemoteDataSource extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       ) as _i3.Future<_i4.StudentModel>?);
+  @override
+  _i3.Future<_i5.ScoreModel>? postScoreModel({
+    required String? idUser,
+    required String? lessonCode,
+    required String? rph,
+    required String? pts,
+    required String? pat,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #postScoreModel,
+          [],
+          {
+            #idUser: idUser,
+            #lessonCode: lessonCode,
+            #rph: rph,
+            #pts: pts,
+            #pat: pat,
+          },
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Future<_i5.ScoreModel>?);
 }
 
 /// A class which mocks [EvaluationLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEvaluationLocalDataSource extends _i1.Mock
-    implements _i5.EvaluationLocalDataSource {
+    implements _i6.EvaluationLocalDataSource {
   @override
-  _i3.Future<void>? cachedKelas(_i6.ClassModel? classModel) =>
+  _i3.Future<void>? cachedKelas(_i7.ClassModel? classModel) =>
       (super.noSuchMethod(
         Invocation.method(
           #cachedKelas,
@@ -62,6 +88,15 @@ class MockEvaluationLocalDataSource extends _i1.Mock
         Invocation.method(
           #chachedStudent,
           [studentModel],
+        ),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>?);
+  @override
+  _i3.Future<void>? cachedLessonCode(_i8.LessonCodeModel? code) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #cachedLessonCode,
+          [code],
         ),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>?);

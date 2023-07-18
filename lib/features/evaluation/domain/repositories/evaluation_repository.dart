@@ -10,6 +10,7 @@ abstract class EvaluationRepository {
   Future<Either<Failure, Student>>? getStudentByClass(String classId);
   Future<Either<Failure, LessonCode>>? getLessonCode();
   Future<Either<Failure, Score>>? postScore({
+    required String idUser,
     required String lessonCode,
     required String rph,
     required String pts,

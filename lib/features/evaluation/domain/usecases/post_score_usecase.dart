@@ -14,6 +14,7 @@ class PostScoreUseCase extends UseCase<Score, ScoreParam> {
   @override
   Future<Either<Failure, Score>?> call(params) async {
     return repository.postScore(
+      idUser: params.idUser,
       lessonCode: params.lessonCode, 
       rph: params.rph, 
       pts: params.pts, 
@@ -24,12 +25,14 @@ class PostScoreUseCase extends UseCase<Score, ScoreParam> {
 }
 
 class ScoreParam extends Equatable{
+  final String idUser;
   final String lessonCode;
   final String rph;
   final String pts;
   final String pat;
 
   const ScoreParam({
+    required this.idUser,
     required this.lessonCode, 
     required this.rph, 
     required this.pts, 
@@ -38,6 +41,7 @@ class ScoreParam extends Equatable{
 
   @override
   List<Object?> get props => [
+    idUser,
     lessonCode,
     rph,
     pts,

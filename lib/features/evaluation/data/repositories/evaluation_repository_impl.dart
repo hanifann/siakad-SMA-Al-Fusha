@@ -83,6 +83,7 @@ class EvaluationRepositoryImpl implements EvaluationRepository {
 
   @override
   Future<Either<Failure, Score>>? postScore({
+    required String idUser,
     required String lessonCode, 
     required String rph, 
     required String pts, 
@@ -91,6 +92,7 @@ class EvaluationRepositoryImpl implements EvaluationRepository {
     if(await networkInfo.isConnected){
       try {
         final response = await remoteDataSource.postScoreModel(
+          idUser: idUser,
           lessonCode: lessonCode,
           rph: rph,
           pts: pts,

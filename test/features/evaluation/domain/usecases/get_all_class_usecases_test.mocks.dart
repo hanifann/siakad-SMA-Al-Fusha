@@ -43,6 +43,7 @@ class MockEvaluationRepository extends _i1.Mock
       ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Student>>?);
   @override
   _i3.Future<_i4.Either<_i5.Failure, _i7.Score>>? postScore({
+    required String? idUser,
     required String? lessonCode,
     required String? rph,
     required String? pts,
@@ -53,6 +54,7 @@ class MockEvaluationRepository extends _i1.Mock
           #postScore,
           [],
           {
+            #idUser: idUser,
             #lessonCode: lessonCode,
             #rph: rph,
             #pts: pts,

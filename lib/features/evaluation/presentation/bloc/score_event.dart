@@ -8,12 +8,14 @@ abstract class ScoreEvent extends Equatable {
 }
 
 class PostScoreEvent extends ScoreEvent {
+  final String idUser;
   final String lessonCode;
   final String rph;
   final String pts;
   final String pat;
 
   const PostScoreEvent({
+    required this.idUser,
     required this.lessonCode, 
     required this.rph, 
     required this.pts, 

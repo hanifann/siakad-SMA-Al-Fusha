@@ -20,6 +20,7 @@ class ScoreBloc extends Bloc<ScoreEvent, ScoreState> {
     emit(ScoreLoading());
     final result = await useCase(
       ScoreParam(
+        idUser: event.idUser,
         lessonCode: event.lessonCode, 
         rph: event.rph, 
         pts: event.pts, 

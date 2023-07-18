@@ -16,6 +16,7 @@ abstract class EvaluationRemoteDataSource {
   Future<StudentModel>? getStudentByClass(String classId);
   Future<LessonCodeModel>? getLessonCode();
   Future<ScoreModel>? postScoreModel({
+    required String idUser,
     required String lessonCode,
     required String rph,
     required String pts,
@@ -91,6 +92,7 @@ class EvaluationRemoteDataSourceImpl implements EvaluationRemoteDataSource {
   
   @override
   Future<ScoreModel>? postScoreModel({
+    required String idUser,
     required String lessonCode, 
     required String rph, 
     required String pts, 
@@ -103,6 +105,7 @@ class EvaluationRemoteDataSourceImpl implements EvaluationRemoteDataSource {
         'Authorization': 'Bearer ${preferences.getString(Env.token)}',
       },
       body: {
+        'id_users': idUser,
         'kd_pelajaran': lessonCode,
         'rph': rph,
         'pts': pts,
