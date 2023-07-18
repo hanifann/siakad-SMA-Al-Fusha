@@ -8,9 +8,7 @@ part 'score_state.dart';
 
 class ScoreBloc extends Bloc<ScoreEvent, ScoreState> {
   ScoreBloc({required this.useCase}) : super(ScoreInitial()) {
-    on<ScoreEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<PostScoreEvent>(_onPostEventUseCase);
   }
 
   final PostScoreUseCase useCase;
