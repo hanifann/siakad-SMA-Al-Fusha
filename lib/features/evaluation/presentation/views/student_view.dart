@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/student_bloc.dart';
@@ -97,12 +98,23 @@ class StudentPage extends StatelessWidget {
       padding: EdgeInsets.only(top: 12.sp),
       primary: false,
       itemBuilder: (context, index) {
-        return ContainerDataKelasWidget(
-          classData: ClassDataModel(
-            id: '1',
-            nama: state.student.data[index].namaUser,
+        return GestureDetector(
+          onTap: () {
+            context.pushNamed(
+              '/input_score',
+              queryParameters: {
+                'idUser': state.student.data[index].namaUser,
+                'namaSiswa': state.student.data[index].namaUser
+              }
+            );
+          },
+          child: ContainerDataKelasWidget(
+            classData: ClassDataModel(
+              id: '1',
+              nama: state.student.data[index].namaUser,
+            ),
+            isKelas: false,
           ),
-          isKelas: false,
         );
       }, 
       separatorBuilder: (_,__)=> SizedBox(height: 16.sp,), 
