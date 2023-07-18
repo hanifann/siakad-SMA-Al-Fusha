@@ -9,6 +9,7 @@ class CustomTextfieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.isObscure = false,
     this.onSuffixTap,
+    this.isEnabled = true,
     super.key,
   });
   final TextEditingController controller;
@@ -16,6 +17,7 @@ class CustomTextfieldWidget extends StatelessWidget {
   final IconData? suffixIcon;
   final bool isObscure;
   final VoidCallback? onSuffixTap;
+  final bool isEnabled;
 
 
   @override
@@ -24,6 +26,7 @@ class CustomTextfieldWidget extends StatelessWidget {
       controller: controller,
       cursorColor: kPrimaryColor,
       obscureText: isObscure,
+      enabled: isEnabled,
       style: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 16.sp,
@@ -43,6 +46,12 @@ class CustomTextfieldWidget extends StatelessWidget {
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             color: controller.text.isEmpty ? kPrimaryTextColor : kPrimaryColor,
+            width: 2,
+          ),
+        ),
+        disabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey,
             width: 2,
           ),
         ),
