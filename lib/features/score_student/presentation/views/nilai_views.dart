@@ -34,7 +34,7 @@ class _NilaiPageState extends State<NilaiPage> {
       body: BlocConsumer<NilaiBloc, NilaiState>(
         listener: (context, state) {
           if(state is UserDataLoaded){
-            context.read<NilaiBloc>().add(GetNilaiEvent(state.user.data[0].id));
+            context.read<NilaiBloc>().add(GetNilaiEvent(state.user.data[0].idUsers));
           }
         },
         builder: (context, state) {
