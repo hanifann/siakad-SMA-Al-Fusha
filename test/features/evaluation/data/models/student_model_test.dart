@@ -8,7 +8,7 @@ import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   
-  const tStudentData = StudentDatumModel(namaUser: 'namaUser', namaKelas: 'namaKelas');
+  const tStudentData = StudentDatumModel(id: '1', namaUser: 'namaUser', namaKelas: 'namaKelas');
   const tStudent = StudentModel(data: [tStudentData]);
 
   test('should be subclass on entities', () {

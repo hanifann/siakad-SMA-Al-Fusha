@@ -9,6 +9,7 @@ class StudentModel extends Student {
 
     Map<String, dynamic> toJson() => {
         "data": List<dynamic>.from(data.map((x) =>StudentDatumModel(
+          id: x.id,
           namaUser: x.namaUser, 
           namaKelas: x.namaKelas
         ).toJson())),
@@ -17,14 +18,16 @@ class StudentModel extends Student {
 }
 
 class StudentDatumModel extends StudentDatum {
-  const StudentDatumModel({required super.namaUser, required super.namaKelas});
+  const StudentDatumModel({required super.id, required super.namaUser, required super.namaKelas});
 
   factory StudentDatumModel.fromJson(Map<String, dynamic> json) => StudentDatumModel(
+        id: json['id'],
         namaUser: json["nama_user"],
         namaKelas: json["nama_kelas"],
     );
 
     Map<String, dynamic> toJson() => {
+        "id": id,
         "nama_user": namaUser,
         "nama_kelas": namaKelas,
     };

@@ -13,16 +13,19 @@ class Student extends Equatable{
 }
 
 class StudentDatum extends Equatable{
+    final String id;
     final String namaUser;
     final String namaKelas;
 
     const StudentDatum({
+        required this.id,
         required this.namaUser,
         required this.namaKelas,
     });
     
       @override
       List<Object?> get props => [
+        id,
         namaUser,
         namaKelas
       ];

@@ -15,7 +15,7 @@ void main() {
     useCase = GetStudentByClassUseCase(repository: repository);
   });
 
-  const tStudentData = StudentDatum(namaUser: 'namaUser', namaKelas: 'namaKelas');
+  const tStudentData = StudentDatum(id: '1', namaUser: 'namaUser', namaKelas: 'namaKelas');
   const tStudent = Student(data: [tStudentData]);
 
   const tClassId = '1';

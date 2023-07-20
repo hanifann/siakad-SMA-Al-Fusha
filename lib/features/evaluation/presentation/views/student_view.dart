@@ -103,14 +103,14 @@ class StudentPage extends StatelessWidget {
             context.pushNamed(
               '/input_score',
               queryParameters: {
-                'idUser': state.student.data[index].namaUser,
+                'idUser': state.student.data[index].id,
                 'namaSiswa': state.student.data[index].namaUser
               }
             );
           },
           child: ContainerDataKelasWidget(
             classData: ClassDataModel(
-              id: '1',
+              id: state.student.data[index].id,
               nama: state.student.data[index].namaUser,
             ),
             isKelas: false,
