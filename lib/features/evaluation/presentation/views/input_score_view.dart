@@ -88,21 +88,76 @@ class _InputScorePageState extends State<InputScorePage> {
           SizedBox(height: 16.h,),
           patTextFieldWidget(),
           SizedBox(height: 16.h,),
-          SizedBox(
-            height: 36.h,
-            child: ElevatedButton(
-              onPressed: () {
-                
-              }, 
-              child: CustomTextWidget(
-                text: 'Input nilai',
-                color: Colors.white,
-                size: 14.sp,
-                weight: FontWeight.w600,
-              )
-            ),
-          )
+          blocListenerScoreWidget(context)
         ],
+      ),
+    );
+  }
+
+  BlocListener<ScoreBloc, ScoreState> blocListenerScoreWidget(BuildContext context) {
+    return BlocListener<ScoreBloc, ScoreState>(
+      listener: (context, state) {
+        if(state is ScoreSuccess){
+          context.pop();
+          showDialog(
+            context: context, 
+            builder: (_) {
+              return AlertDialog(
+                titlePadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+                contentPadding: EdgeInsets.all(8.r),
+                title: CustomTextWidget(
+                  text: 'Berhasil',
+                  size: 16.sp,
+                  weight: FontWeight.bold,
+                ),
+                content: CustomTextWidget(
+                  text: 'Nilai berhasil di inputkan',
+                  size: 14.sp,
+                  weight: FontWeight.w500,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => context.pop(), 
+                    child: const Text('Kembali')
+                  )
+                ],
+              );
+            }
+          );
+        } else if (state is ScoreFailed){
+          context.pop();
+          showDialog(
+            context: context, 
+            builder: (_) => ErrorDialog(errorValue: state.error.message!)
+          );
+        } else {
+          showDialog(
+            context: context, 
+            builder: (_)=> const LoadingDialog()
+          );
+        }
+      },
+      child: SizedBox(
+        height: 36.h,
+        child: ElevatedButton(
+          onPressed: () {
+            context.read<ScoreBloc>().add(
+              PostScoreEvent(
+                idUser: widget.idUser, 
+                lessonCode: dropdownValue, 
+                rph: rphTextController.text, 
+                pts: ptsTextController.text, 
+                pat: patTextController.text
+              )
+            );
+          }, 
+          child: CustomTextWidget(
+            text: 'Input nilai',
+            color: Colors.white,
+            size: 14.sp,
+            weight: FontWeight.w600,
+          )
+        ),
       ),
     );
   }
