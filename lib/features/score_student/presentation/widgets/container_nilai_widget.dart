@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/domain/entities/nilai.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
@@ -113,14 +114,16 @@ class ContainerNilaiWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CustomTextWidget(
-            text: nilai.nama,
-            weight: FontWeight.w600,
-            size: 14.sp,
+          Expanded(
+            child: CustomTextWidget(
+              text: nilai.nama,
+              weight: FontWeight.w600,
+              size: 14.sp,
+            ),
           ),
           const Spacer(),
           CustomTextWidget(
-            text: nilai.rataRata,
+            text: NumberFormat('###.0#', 'id').format(double.parse(nilai.rataRata)),
             weight: FontWeight.w600,
             size: 14.sp,
             color: const Color.fromRGBO(77, 138, 240, 1),
