@@ -185,7 +185,7 @@ Future<void> init() async {
 
   //profile
   //bloc
-  sl.registerFactory(() => ProfileBloc(sl()));
+  sl.registerFactory(() => ProfileBloc(sl(), sl()));
   
 
   //!external
