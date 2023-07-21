@@ -10,3 +10,7 @@ abstract class ProfileEvent extends Equatable {
 class GetProfileEvent extends ProfileEvent {
   
 }
+
+class LogoutEvent extends ProfileEvent {
+  
+}

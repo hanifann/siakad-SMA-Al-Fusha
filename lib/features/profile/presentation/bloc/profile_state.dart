@@ -24,3 +24,7 @@ class ProfileFailed extends ProfileState {
 class ProfileLoading extends ProfileState {
   
 }
+
+class LogoutSuccess extends ProfileState {
+  
+}
