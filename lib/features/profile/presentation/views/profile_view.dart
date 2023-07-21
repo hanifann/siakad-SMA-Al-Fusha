@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siakad_sma_al_fusha/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/profile/presentation/widgets/row_profile_data_widget.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
@@ -98,28 +97,35 @@ class ProfilePage extends StatelessWidget {
             ],
             borderRadius: BorderRadius.circular(8.r)
           ),
-          child: ElevatedButton(
-            onPressed: ()async {
-              await sl<SharedPreferences>().clear().then((_) => context.go('/'));
+          child: BlocListener<ProfileBloc, ProfileState>(
+            listener: (context, state) {
+              if(state is LogoutSuccess){
+                context.pushReplacement('/');
+              }
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              elevation: 0
-            ), 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomTextWidget(
-                  text: 'Keluar',
-                  size: 14.sp,
-                  weight: FontWeight.bold,
-                  color: Colors.red,
-                ),
-                const Icon(
-                  Icons.logout,
-                  color: Colors.red,
-                )
-              ],
+            child: ElevatedButton(
+              onPressed: (){
+                context.read<ProfileBloc>().add(LogoutEvent());
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                elevation: 0
+              ), 
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomTextWidget(
+                    text: 'Keluar',
+                    size: 14.sp,
+                    weight: FontWeight.bold,
+                    color: Colors.red,
+                  ),
+                  const Icon(
+                    Icons.logout,
+                    color: Colors.red,
+                  )
+                ],
+              ),
             ),
           ),
         ),
