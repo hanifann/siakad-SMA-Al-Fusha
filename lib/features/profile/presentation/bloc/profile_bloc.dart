@@ -35,7 +35,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     LogoutEvent event,
     Emitter<ProfileState> emit,
   ) async {
-    await preferences.clear();
-    emit(LogoutSuccess());
+    final isSuccess = await preferences.clear();
+    if(isSuccess){
+      emit(LogoutSuccess());
+    }
   }
 }

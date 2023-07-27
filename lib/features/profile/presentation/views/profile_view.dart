@@ -100,7 +100,7 @@ class ProfilePage extends StatelessWidget {
           child: BlocListener<ProfileBloc, ProfileState>(
             listener: (context, state) {
               if(state is LogoutSuccess){
-                context.go('/');
+                context.go('/login');
               }
             },
             child: ElevatedButton(
