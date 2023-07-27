@@ -47,7 +47,9 @@ import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nila
 import 'package:siakad_sma_al_fusha/features/score_student/data/repositories/nilai_repository_impl.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/domain/repositories/nilai_repository.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/domain/usecases/get_nilai_usecase.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/domain/usecases/get_tahun_ajaran_usecase.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/presentation/bloc/nilai_bloc.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/presentation/bloc/tahun_ajaran_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -97,8 +99,10 @@ Future<void> init() async {
   //nilai
   //bloc
   sl.registerFactory(() => NilaiBloc(sl(), sl()));
+  sl.registerFactory(() => TahunAjaranBloc(useCase: sl()));
   //usecase
   sl.registerLazySingleton(() => GetNilasiUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetTahunAjaranUseCase(repository: sl()));
   //repository
   sl.registerLazySingleton<NilaiRepository>(
     () => NilaiRepositoryImpl(
