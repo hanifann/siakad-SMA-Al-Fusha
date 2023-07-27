@@ -9,8 +9,9 @@ abstract class NilaiEvent extends Equatable {
 
 class GetNilaiEvent extends NilaiEvent {
   final String id;
+  final String tahunAJaranId;
 
-  const GetNilaiEvent(this.id);
+  const GetNilaiEvent(this.id, this.tahunAJaranId);
 }
 
 class GetUserIdEvent extends NilaiEvent {

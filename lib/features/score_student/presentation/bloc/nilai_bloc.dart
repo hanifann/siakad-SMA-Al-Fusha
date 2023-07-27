@@ -24,7 +24,7 @@ class NilaiBloc extends Bloc<NilaiEvent, NilaiState> {
     Emitter<NilaiState> emit,
   ) async {
     emit(NilaiLoading());
-    final result = await useCase(NilaiParams(event.id));
+    final result = await useCase(NilaiParams(event.id, event.tahunAJaranId));
     result!.fold(
       (l) => emit(NilaiFailed(ErrorModel(message: l.message))), 
       (r) => emit(NilaiLoaded(r))
