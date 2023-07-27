@@ -32,7 +32,7 @@ void main() {
   
   void setupMockHttpClientSuccess200() {
       when(mockClient.get(
-        Uri.https(Env.url, '/api/nilai/$tId'),
+        Uri.https(Env.url, '/api/nilai_by_siswa/$tId/$tId'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer null'
@@ -44,11 +44,11 @@ void main() {
     //arrange
     setupMockHttpClientSuccess200();
 
-    remoteDataSourceImpl.getNilai(tId);
+    remoteDataSourceImpl.getNilai(tId, tId);
 
     verify(
       mockClient.get(
-        Uri.https(Env.url, '/api/nilai/$tId'),
+        Uri.https(Env.url, '/api/nilai_by_siswa/$tId/$tId'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer null'
@@ -62,7 +62,7 @@ void main() {
     setupMockHttpClientSuccess200();
 
     //act
-    final response = await remoteDataSourceImpl.getNilai(tId);
+    final response = await remoteDataSourceImpl.getNilai(tId, tId);
 
     //assert
     expect(response, equals(tNilai));
@@ -72,7 +72,7 @@ void main() {
     //arrange
     when(
       mockClient.get(
-        Uri.https(Env.url, '/api/nilai/$tId'),
+        Uri.https(Env.url, '/api/nilai_by_siswa/$tId/$tId'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer null'
@@ -84,6 +84,6 @@ void main() {
     final call = remoteDataSourceImpl.getNilai;
 
     //assert
-    expect(()=> call(tId), throwsA(const TypeMatcher<ServerException>()));
+    expect(()=> call(tId, tId), throwsA(const TypeMatcher<ServerException>()));
   });
 }

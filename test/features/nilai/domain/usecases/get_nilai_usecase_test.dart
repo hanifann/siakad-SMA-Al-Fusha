@@ -33,14 +33,14 @@ void main() {
 
   test('should get nilai data from repository ', () async {
     //arrange
-    when(mockNilaiRepository.getNilai(tId))
+    when(mockNilaiRepository.getNilai(tId, tId))
       .thenAnswer((_) async => const Right(tNilai));
     
     //act
-    final response = await useCase(const NilaiParams(tId));
+    final response = await useCase(const NilaiParams(tId, tId));
 
     //assert
-    verify(mockNilaiRepository.getNilai(tId));
+    verify(mockNilaiRepository.getNilai(tId, tId));
     expect(response, equals(const Right(tNilai)));
     verifyNoMoreInteractions(mockNilaiRepository);
   });

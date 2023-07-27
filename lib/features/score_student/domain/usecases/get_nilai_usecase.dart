@@ -13,18 +13,20 @@ class GetNilasiUseCase extends UseCase<Nilai, NilaiParams> {
 
   @override
   Future<Either<Failure, Nilai>?> call(params) async {
-    return repository.getNilai(params.id);
+    return repository.getNilai(params.id, params.tahunAjaranId);
   }
   
 }
 
 class NilaiParams extends Equatable{
   final String id;
+  final String tahunAjaranId;
 
-  const NilaiParams(this.id);
+  const NilaiParams(this.id, this.tahunAjaranId);
 
   @override
   List<Object?> get props => [
-    id
+    id,
+    tahunAjaranId
   ];
 }

@@ -49,42 +49,42 @@ void main() {
     test('should return nilai when call to remote datasource is success',
     () async {
       //arrange
-      when(mockRemoteDataSource.getNilai(tId))
+      when(mockRemoteDataSource.getNilai(tId, tId))
         .thenAnswer((_) async => tNilai);
       
       //act
-      final response = await repositoryImpl.getNilai(tId);
+      final response = await repositoryImpl.getNilai(tId, tId);
 
       //assert
-      verify(mockRemoteDataSource.getNilai(tId));
+      verify(mockRemoteDataSource.getNilai(tId, tId));
       expect(response, equals(Right(tNilai)));
     });
 
     test('should cached nilai when call to remote datasource is success', 
     () async {
       //arrange
-      when(mockRemoteDataSource.getNilai(tId))
+      when(mockRemoteDataSource.getNilai(tId, tId))
         .thenAnswer((_) async => tNilai);
 
       //act
-      await repositoryImpl.getNilai(tId);
+      await repositoryImpl.getNilai(tId, tId);
 
       //assert
-      verify(mockRemoteDataSource.getNilai(tId));
+      verify(mockRemoteDataSource.getNilai(tId, tId));
       verify(mockLocalDataSource.cachedNilai(tNilai));
     });
 
     test('should return ServerFailure() when call to remote datasource'
      'is failed', () async {
       //arrange
-      when(mockRemoteDataSource.getNilai(tId))
+      when(mockRemoteDataSource.getNilai(tId, tId))
         .thenThrow(ServerException(error: const ErrorModel(message: 'error')));
       
       //act
-      final response = await repositoryImpl.getNilai(tId);
+      final response = await repositoryImpl.getNilai(tId, tId);
 
       //assert
-      verify(mockRemoteDataSource.getNilai(tId));
+      verify(mockRemoteDataSource.getNilai(tId, tId));
       verifyZeroInteractions(mockLocalDataSource);
       expect(response, equals(const Left(ServerFailure(message: 'error'))));
     });
@@ -102,7 +102,7 @@ void main() {
         .thenAnswer((_) async => tNilai);
       
       //act
-      final response = await repositoryImpl.getNilai(tId);
+      final response = await repositoryImpl.getNilai(tId, tId);
 
       //assert
       verify(mockLocalDataSource.getCachedNilai());
@@ -118,7 +118,7 @@ void main() {
         ));
       
       //act
-      final response = await repositoryImpl.getNilai(tId);
+      final response = await repositoryImpl.getNilai(tId, tId);
 
       //assert
       verify(mockLocalDataSource.getCachedNilai());

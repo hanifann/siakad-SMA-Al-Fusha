@@ -30,10 +30,17 @@ import 'package:siakad_sma_al_fusha/features/score_student/data/models/nilai_mod
 class MockNilaiRemoteDataSource extends _i1.Mock
     implements _i2.NilaiRemoteDataSource {
   @override
-  _i3.Future<_i4.NilaiModel>? getNilai(String? id) => (super.noSuchMethod(
+  _i3.Future<_i4.NilaiModel>? getNilai(
+    String? id,
+    String? tahunAjaranId,
+  ) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getNilai,
-          [id],
+          [
+            id,
+            tahunAjaranId,
+          ],
         ),
         returnValueForMissingStub: null,
       ) as _i3.Future<_i4.NilaiModel>?);

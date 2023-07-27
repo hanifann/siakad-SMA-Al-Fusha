@@ -29,11 +29,17 @@ import 'package:siakad_sma_al_fusha/features/score_student/domain/repositories/n
 /// See the documentation for Mockito's code generation for more information.
 class MockNilaiRepository extends _i1.Mock implements _i2.NilaiRepository {
   @override
-  _i3.Future<_i4.Either<_i5.Failure, _i6.Nilai>>? getNilai(String? id) =>
+  _i3.Future<_i4.Either<_i5.Failure, _i6.Nilai>>? getNilai(
+    String? id,
+    String? tahunAjaranId,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
           #getNilai,
-          [id],
+          [
+            id,
+            tahunAjaranId,
+          ],
         ),
         returnValueForMissingStub: null,
       ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Nilai>>?);

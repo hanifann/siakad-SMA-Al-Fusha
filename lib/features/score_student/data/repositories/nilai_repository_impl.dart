@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_local_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/data/datasources/nilai_remote_datasource.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/domain/entities/nilai.dart';
+import 'package:siakad_sma_al_fusha/features/score_student/domain/entities/tahun_ajaran.dart';
 import 'package:siakad_sma_al_fusha/features/score_student/domain/repositories/nilai_repository.dart';
 
 class NilaiRepositoryImpl implements NilaiRepository {
@@ -19,10 +20,10 @@ class NilaiRepositoryImpl implements NilaiRepository {
   });
 
   @override
-  Future<Either<Failure, Nilai>>? getNilai(String id) async {
+  Future<Either<Failure, Nilai>>? getNilai(String id, String tahunAjaranId) async {
     if(await networkInfo.isConnected){
       try {
-        final response  = await remoteDataSource.getNilai(id);
+        final response  = await remoteDataSource.getNilai(id, tahunAjaranId);
         localDataSource.cachedNilai(response!);
         return Right(response);
       } on ServerException catch (e) {
@@ -31,6 +32,26 @@ class NilaiRepositoryImpl implements NilaiRepository {
     } else {
       try {
         final result = await localDataSource.getCachedNilai();
+        return Right(result!);
+      } on CacheException catch (e) {
+        return Left(CacheFailure(message: e.message));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, TahunAjaran>>? getTahunAjaran() async {
+    if(await networkInfo.isConnected){
+      try {
+        final response  = await remoteDataSource.getTahunAjaran();
+        localDataSource.cachedTahunAjaran(response!);
+        return Right(response);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.error.message));
+      }
+    } else {
+      try {
+        final result = await localDataSource.getCahcedTahunAjaran();
         return Right(result!);
       } on CacheException catch (e) {
         return Left(CacheFailure(message: e.message));
