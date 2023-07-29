@@ -24,7 +24,6 @@ class RowProfileDataWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 3,
           child: CustomTextWidget(
             text: value,
             size: 14.sp,
