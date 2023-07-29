@@ -81,6 +81,14 @@ class ProfilePage extends StatelessWidget {
                 title: 'Alamat',
                 value: state.user.data[0].alamat,
               ),
+              SizedBox(height: 4.h,),
+              Visibility(
+                visible: state.user.data[0].tgsTam != null ? true : false,
+                child: RowProfileDataWidget(
+                  title: 'Tugas Tambahan',
+                  value: state.user.data[0].tgsTam.toString(),
+                ),
+              ),
             ],
           ),
         ),
