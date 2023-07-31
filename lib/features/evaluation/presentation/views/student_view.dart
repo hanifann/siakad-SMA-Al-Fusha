@@ -12,42 +12,35 @@ import 'package:siakad_sma_al_fusha/widgets/error_widget.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class StudentView extends StatelessWidget {
-  const StudentView({super.key, required this.classDataModel});
-  final ClassDataModel classDataModel;
+  const StudentView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<StudentBloc>()..add(GetTokenEvent()),
-      child: StudentPage(classDataModel: classDataModel),
+      child: const StudentPage(),
     );
   }
 }
 
 class StudentPage extends StatelessWidget {
-  const StudentPage({super.key, required this.classDataModel});
-  final ClassDataModel classDataModel;
+  const StudentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(),
       body: ListView(
         padding: EdgeInsets.all(16.r),
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTextWidget(
-                text: 'Kelas ${classDataModel.nama}',
-                size: 18.sp,
-                weight: FontWeight.bold,
-              ),
+              namaKelasBlocBuilderWidget(),
               BlocConsumer<StudentBloc, StudentState>(
                 listener: (context, state) {
                   if(state is TokenLoaded){
                     context.read<StudentBloc>().add(
-                      GetStudentByClassEvent(classDataModel.id)
+                      GetStudentByClassEvent(state.user.data[0].idKelas!)
                     );
                   }
                 },
@@ -65,6 +58,35 @@ class StudentPage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  BlocBuilder<StudentBloc, StudentState> namaKelasBlocBuilderWidget() {
+    return BlocBuilder<StudentBloc, StudentState>(
+      builder: (context, state) {
+        if(state is StudentLoaded){
+          return CustomTextWidget(
+            text: 'Kelas ${state.student.data[0].namaKelas}',
+            size: 18.sp,
+            weight: FontWeight.bold,
+          );
+        } else if (state is StudentFailed){
+          return CustomErrorWidget(message: state.error.message!);
+        } else {
+          return Shimmer.fromColors(
+            baseColor: Colors.white,
+            highlightColor: kPrimaryColor.withOpacity(.1),
+            child: Container(
+              height: 18.sp,
+              width: 1.sw,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.r),
+                color: Colors.white
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 
