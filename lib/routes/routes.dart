@@ -2,7 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/domain/entities/announcement.dart';
 import 'package:siakad_sma_al_fusha/features/announcement_detail/views/announcement_detail_view.dart';
 import 'package:siakad_sma_al_fusha/features/auth/presentation/views/auth_view.dart';
-import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/input_score_view.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/student_view.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/views/home_student_view.dart';
@@ -37,10 +36,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/student',
-      builder: (context, state) {
-        ClassDataModel classDataModel = state.extra as ClassDataModel;
-        return StudentView(classDataModel: classDataModel);
-      }
+      builder: (context, state)=> const StudentView()
     ),
     GoRoute(
       path: '/input_score',
