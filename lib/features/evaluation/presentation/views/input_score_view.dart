@@ -12,33 +12,29 @@ import 'package:siakad_sma_al_fusha/widgets/custom_dialog_widget.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class InputScoreView extends StatelessWidget {
-  const InputScoreView({super.key, required this.idUser, required this.namaSiswa});
+  const InputScoreView({super.key, required this.idUser, required this.namaSiswa, required this.kodeMapel});
   final String idUser;
   final String namaSiswa;
+  final String kodeMapel;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => sl<LessonCodeBloc>()..add(GetLessonCodeEvent()),
-        ),
-        BlocProvider(
-          create: (context) => sl<ScoreBloc>(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => sl<ScoreBloc>(),
       child: InputScorePage(
         idUser: idUser,
         namaSiswa: namaSiswa,
+        kodeMapel: kodeMapel,
       ),
     );
   }
 }
 
 class InputScorePage extends StatefulWidget {
-  const InputScorePage({super.key, required this.idUser, required this.namaSiswa});
+  const InputScorePage({super.key, required this.idUser, required this.namaSiswa, required this.kodeMapel});
   final String idUser;
   final String namaSiswa;
+  final String kodeMapel;
   @override
   State<InputScorePage> createState() => _InputScorePageState();
 }
@@ -79,8 +75,6 @@ class _InputScorePageState extends State<InputScorePage> {
         padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
         children: [
           namaTextFieldWidget(),
-          SizedBox(height: 16.h,),
-          lessonBlocConsumerWidget(),
           SizedBox(height: 16.h,),
           rphTextFieldWidget(),
           SizedBox(height: 16.h,),
@@ -144,7 +138,7 @@ class _InputScorePageState extends State<InputScorePage> {
             context.read<ScoreBloc>().add(
               PostScoreEvent(
                 idUser: widget.idUser, 
-                lessonCode: dropdownValue, 
+                lessonCode: widget.kodeMapel, 
                 rph: rphTextController.text, 
                 pts: ptsTextController.text, 
                 pat: patTextController.text
