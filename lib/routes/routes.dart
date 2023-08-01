@@ -36,7 +36,12 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/student',
-      builder: (context, state)=> const StudentView()
+      name: '/student',
+      builder: (context, state) {
+        return StudentView(
+          kodeMapel: state.queryParameters['kodeMapel']!
+        );
+      }
     ),
     GoRoute(
       path: '/input_score',
@@ -45,6 +50,7 @@ final router = GoRouter(
         return InputScoreView(
           idUser: state.queryParameters['idUser']!,
           namaSiswa: state.queryParameters['namaSiswa']!,
+          kodeMapel: state.queryParameters['kodeMapel']!,
         );
       }
     ),
