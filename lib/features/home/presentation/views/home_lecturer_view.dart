@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:siakad_sma_al_fusha/features/announcement/views/announcement_view.dart';
 import 'package:siakad_sma_al_fusha/features/beranda/presentation/views/beranda_view.dart';
-import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/student_view.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/presentation/views/lesson_code_view.dart';
 import 'package:siakad_sma_al_fusha/features/home/presentation/cubit/role_cubit.dart';
 import 'package:siakad_sma_al_fusha/features/schedule/presentation/views/schedule_view.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
@@ -36,7 +36,7 @@ class _HomeLecturerPageState extends State<HomeLecturerPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     BerandaView(),
     ScheduleView(),
-    StudentView(),
+    LessonCodeView(),
     AnnouncementView()
   ];
 
@@ -110,7 +110,7 @@ class _HomeLecturerPageState extends State<HomeLecturerPage> {
       centerTitle: false,
       title: CustomTextWidget(
         text: _selectedIndex == 2 ? 
-        'Daftar Siswa' : 
+        'Kode mata pelajaran' : 
         _title[_selectedIndex],
         weight: FontWeight.bold,
         size: 24.sp,
