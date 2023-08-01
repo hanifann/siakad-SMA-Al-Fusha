@@ -12,23 +12,28 @@ import 'package:siakad_sma_al_fusha/widgets/error_widget.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
 class StudentView extends StatelessWidget {
-  const StudentView({super.key});
+  const StudentView({super.key, required this.kodeMapel});
+  final String kodeMapel;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<StudentBloc>()..add(GetTokenEvent()),
-      child: const StudentPage(),
+      child: StudentPage(
+        kodeMapel: kodeMapel,
+      ),
     );
   }
 }
 
 class StudentPage extends StatelessWidget {
-  const StudentPage({super.key});
+  const StudentPage({super.key, required this.kodeMapel});
+  final String kodeMapel;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBarWidget(),
       body: ListView(
         padding: EdgeInsets.all(16.r),
         children: [
@@ -126,7 +131,8 @@ class StudentPage extends StatelessWidget {
               '/input_score',
               queryParameters: {
                 'idUser': state.student.data[index].id,
-                'namaSiswa': state.student.data[index].namaUser
+                'namaSiswa': state.student.data[index].namaUser,
+                'kodeMapel': kodeMapel
               }
             );
           },
