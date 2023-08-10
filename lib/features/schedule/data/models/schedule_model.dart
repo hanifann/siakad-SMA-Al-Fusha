@@ -34,7 +34,7 @@ class ScheduleDataModel extends ScheduleData {
   });
 
   factory ScheduleDataModel.fromJson(Map<String, dynamic> json) => ScheduleDataModel(
-        guruPengampu: json["Guru Pengampu"],
+        guruPengampu: json["guru_pengampu"],
         mapel: json["mapel"],
         kelas: json["kelas"],
         jam: json["jam"] ?? json['jam_mengajar'],
@@ -43,7 +43,7 @@ class ScheduleDataModel extends ScheduleData {
     );
 
     Map<String, dynamic> toJson() => {
-        "Guru Pengampu": guruPengampu,
+        "guru_pengampu": guruPengampu,
         "mapel": mapel,
         "kelas": kelas,
         "jam": jam,
