@@ -1,11 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:siakad_sma_al_fusha/features/evaluation/data/models/class_model.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/lesson_code_bloc.dart';
-import 'package:siakad_sma_al_fusha/features/evaluation/presentation/widgets/container_data_kelas_widget.dart';
+import 'package:siakad_sma_al_fusha/features/evaluation/presentation/widgets/container_lesson_widget.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
 import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/error_widget.dart';
@@ -16,7 +17,7 @@ class LessonCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<LessonCodeBloc>()..add(GetLessonCodeEvent()),
+      create: (context) => sl<LessonCodeBloc>()..add(GetClassIdEvent()),
       child: const LessonCodePage(),
     );
   }
@@ -31,7 +32,12 @@ class LessonCodePage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(16.r),
         children: [
-          BlocBuilder<LessonCodeBloc, LessonCodeState>(
+          BlocConsumer<LessonCodeBloc, LessonCodeState>(
+            listener: (context, state) {
+              if(state is LessonCodeClassIdLoaded){
+                context.read<LessonCodeBloc>().add(GetLessonCodeEvent(state.classId));
+              }
+            },
             builder: (context, state) {
               if(state is LessonCodeLoaded){
                 return mapelLoadedWidget(state);
@@ -41,7 +47,7 @@ class LessonCodePage extends StatelessWidget {
                 return mapelLoadingWidget();
               }
             },
-          ),
+          )
         ],
       ),
     );
@@ -82,17 +88,13 @@ class LessonCodePage extends StatelessWidget {
             context.pushNamed(
               '/student',
               queryParameters: {
-                'kodeMapel': state.lessonCode.data[index]
+                'kodeMapel': state.lessonCode.data[index].kode
               }
             );
           },
-          child: ContainerDataKelasWidget(
-            classData: ClassDataModel(
-              id: '1',
-              nama: state.lessonCode.data[index],
-            ),
-            isKelas: false,
-          ),
+          child: ContainerLessonWidget(
+            lessonCodeData: state.lessonCode.data[index]
+          )
         );
       }, 
       separatorBuilder: (_,__)=> SizedBox(height: 16.sp,), 
