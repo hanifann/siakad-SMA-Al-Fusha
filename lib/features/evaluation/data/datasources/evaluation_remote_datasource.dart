@@ -14,7 +14,7 @@ import 'package:siakad_sma_al_fusha/features/evaluation/data/models/student_mode
 abstract class EvaluationRemoteDataSource {
   Future<ClassModel>? getALlClass();
   Future<StudentModel>? getStudentByClass(String classId);
-  Future<LessonCodeModel>? getLessonCode();
+  Future<LessonCodeModel>? getLessonCode(String classId);
   Future<ScoreModel>? postScoreModel({
     required String idUser,
     required String lessonCode,
@@ -72,9 +72,9 @@ class EvaluationRemoteDataSourceImpl implements EvaluationRemoteDataSource {
   }
   
   @override
-  Future<LessonCodeModel>? getLessonCode() async {
+  Future<LessonCodeModel>? getLessonCode(String classId) async {
     final response = await client.get(
-      Uri.https(Env.url, '/api/getPelajaran'),
+      Uri.https(Env.url, '/api/get_pelajaran_by_walikelas/$classId'),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${preferences.getString(Env.token)}',
