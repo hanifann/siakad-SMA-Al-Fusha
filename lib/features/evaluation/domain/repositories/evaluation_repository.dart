@@ -8,7 +8,7 @@ import 'package:siakad_sma_al_fusha/features/evaluation/domain/entities/student.
 abstract class EvaluationRepository {
   Future<Either<Failure, Class>>? getAllClass();
   Future<Either<Failure, Student>>? getStudentByClass(String classId);
-  Future<Either<Failure, LessonCode>>? getLessonCode();
+  Future<Either<Failure, LessonCode>>? getLessonCode(String classId);
   Future<Either<Failure, Score>>? postScore({
     required String idUser,
     required String lessonCode,

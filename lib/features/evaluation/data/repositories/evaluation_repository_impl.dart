@@ -62,10 +62,10 @@ class EvaluationRepositoryImpl implements EvaluationRepository {
   }
 
   @override
-  Future<Either<Failure, LessonCode>>? getLessonCode() async {
+  Future<Either<Failure, LessonCode>>? getLessonCode(String classId) async {
     if(await networkInfo.isConnected){
       try {
-        final response = await remoteDataSource.getLessonCode();
+        final response = await remoteDataSource.getLessonCode(classId);
         localDataSource.cachedLessonCode(response!);
         return Right(response);
       } on ServerException catch (e) {
