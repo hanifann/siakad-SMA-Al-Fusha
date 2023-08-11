@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/lesson_code_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/evaluation/presentation/bloc/score_bloc.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/widgets/column_title_and_textfield_widget.dart';
 import 'package:siakad_sma_al_fusha/features/login/presentation/widgets/custom_textfield_widget.dart';
 import 'package:siakad_sma_al_fusha/injection_container.dart';
-import 'package:siakad_sma_al_fusha/themes/colors.dart';
 import 'package:siakad_sma_al_fusha/widgets/custom_dialog_widget.dart';
 import 'package:siakad_sma_al_fusha/widgets/text_widget.dart';
 
@@ -189,67 +187,6 @@ class _InputScorePageState extends State<InputScorePage> {
     );
   }
 
-  BlocConsumer<LessonCodeBloc, LessonCodeState> lessonBlocConsumerWidget() {
-    return BlocConsumer<LessonCodeBloc, LessonCodeState>(
-      listener: (context, state) {
-        if(state is LessonCodeFailed){
-          showDialog(
-            context: context, 
-            builder: (_) => ErrorDialog(
-              errorValue: state.error.message!
-            ),
-          );
-        } else if (state is LessonCodeLoaded){
-          context.pop();
-          setState(() {
-            dropdownValue = state.lessonCode.data.first;
-          });
-        } else{
-          showDialog(
-            context: context, 
-            builder: (_) => const LoadingDialog()
-          );
-        }
-      },
-      builder: (context, state) {
-        if(state is LessonCodeLoaded){
-          return lessonCodeDropdownWidget(state);
-        } else {
-          return lessonCode();
-        }
-      },
-    );
-  }
-
-  ColumnTitleAndTextFieldWidget lessonCodeDropdownWidget(LessonCodeLoaded state) {
-    return ColumnTitleAndTextFieldWidget(
-      title: 'Kode mata pelajaran',
-      textfield: DropdownButton(
-        isExpanded: true,
-        underline: Container(
-          height: 2,
-          color: kPrimaryTextColor,
-        ),
-        hint: const Text('Kode mata pelajaran'),
-        items: state.lessonCode.data.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: CustomTextWidget(
-              text: value,
-              weight: FontWeight.w500,
-              size: 16.sp,
-            ),
-          );
-        }).toList(), 
-        onChanged: (value) {
-          setState(() {
-            dropdownValue = value!;
-          });
-        },
-        value: dropdownValue,
-      ),
-    );
-  }
 
   ColumnTitleAndTextFieldWidget lessonCode() {
     return ColumnTitleAndTextFieldWidget(
