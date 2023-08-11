@@ -24,3 +24,9 @@ class LessonCodeFailed extends LessonCodeState {
 class LessonCodeLoading extends LessonCodeState{
   
 }
+
+class LessonCodeClassIdLoaded extends LessonCodeState {
+  final String classId;
+
+  const LessonCodeClassIdLoaded(this.classId);
+}

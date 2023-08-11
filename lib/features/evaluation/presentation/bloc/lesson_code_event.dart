@@ -8,5 +8,11 @@ abstract class LessonCodeEvent extends Equatable {
 }
 
 class GetLessonCodeEvent extends LessonCodeEvent {
+  final String classId;
+
+  const GetLessonCodeEvent(this.classId);
+}
+
+class GetClassIdEvent extends LessonCodeEvent {
   
 }
