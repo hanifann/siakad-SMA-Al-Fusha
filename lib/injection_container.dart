@@ -164,7 +164,7 @@ Future<void> init() async {
   //bloc
   sl.registerFactory(() => ClassBloc(classUseCase: sl()));
   sl.registerFactory(() => StudentBloc(useCase: sl(), roleUseCase: sl()));
-  sl.registerFactory(() => LessonCodeBloc(useCase: sl()));
+  sl.registerFactory(() => LessonCodeBloc(useCase: sl(), getClassIdUseCase: sl()));
   sl.registerFactory(() => ScoreBloc(useCase: sl()),);
   //usecases
   sl.registerLazySingleton(() => GetAllClassUseCase(repository: sl()));
