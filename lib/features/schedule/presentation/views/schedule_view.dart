@@ -37,25 +37,26 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage> {
   List<DayModel> day = [
-    DayModel(day: 'Senin'),
+    DayModel(day: 'Senin', isSelected: true),
     DayModel(day: 'Selasa'),
     DayModel(day: 'Rabu'),
     DayModel(day: 'Kamis'),
-    DayModel(day: 'Jumat'),
     DayModel(day: 'Sabtu'),
     DayModel(day: 'Minggu')
   ];
 
   @override
   void initState() {
-    day.where(
-      (element) => DateFormat('EEEE', 'id').format(DateTime.now()) 
-        == element.day,
-    ).map((e) => e.isSelected = true);
-    log(day.where(
-      (element) => DateFormat('EEEE', 'id').format(DateTime.now()) 
-        == element.day,
-    ).map((e) => e.isSelected = true).toString(),);
+    if(DateFormat('EEEE', 'id').format(DateTime.now()) != 'Jumat'){
+      day.where(
+        (element) => DateFormat('EEEE', 'id').format(DateTime.now()) 
+          == element.day,
+      ).map((e) => e.isSelected = true);
+      log(day.where(
+        (element) => DateFormat('EEEE', 'id').format(DateTime.now()) 
+          == element.day,
+      ).map((e) => e.isSelected = true).toString(),);
+    }
     super.initState();
   }
 
